@@ -7,18 +7,20 @@
   - RISC-V GNU complier.
 ### Methodolgy:
   #### Task_1 : Compile and verify simple C code in GCC environment.
+  ##### Code:
   ```c
-#include <stdio.h>
+	#include <stdio.h>
 
-int main(){
+	int main(){
 
-	int sum=0;
-	int n=50;
-	for(int i=0;i<=n;i++){
-		sum = sum + i;
+		int sum=0;
+		int n=50;
+		for(int i=0;i<=n;i++){
+			sum = sum + i;
+		}
+		printf("Sum of numbers from 1 to %d is %d\n",n,sum);
+		return 0;
 	}
-	printf("Sum of numbers from 1 to %d is %d\n",n,sum);
-	return 0;
-}
 
+#### Commands used to compile and run the code:
   
