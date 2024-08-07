@@ -6,7 +6,7 @@
   - GCC
   - RISC-V GNU complier.
 ### Methodolgy:
-  #### Task_1 : Complie and verify simple C code in GCC environment.
+  #### Task_1 : Compile and verify simple C code in GCC environment.
   ```c
 #include <stdio.h>
 
