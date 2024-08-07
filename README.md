@@ -115,7 +115,8 @@ Note that the lower 12 bits remains the same which means lui perfoms basic addit
 4. Understanding addi instruction by checking the value in the register sp.
 We observe in the calculator app that the subtraction of the intial value and final value results in 16.
 So we understand that addi instrcution adds -16 to the register sp.
-![image](https://github.com/user-attachments/assets/97387ef3-c2fa-4d38-a75b-de05b4281587)
+![image](https://github.com/user-attachments/assets/b8e1ef93-ed46-4d34-b464-cfd8024315a5)
+
 
 </details>
 
