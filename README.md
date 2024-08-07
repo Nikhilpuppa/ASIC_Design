@@ -64,6 +64,17 @@ There are a total of 11 lines in the main section of Ofast optimization.
 </details>
 
 <details><summary><strong>Lab2</strong></summary>
+	
+### Objective:
+  - Compile the dump file and verify the output with GCC output of lab1
+  - Debug the main section of the previously written C program and observe the reguster values sof each step.
+	
+### Tools used:
+  - GCC
+  - RISC-V GNU complier
+  - Spike RISC-V Simualtor
+
+### Methodolgy:
 
 
 </details>
