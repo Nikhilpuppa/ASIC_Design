@@ -108,14 +108,14 @@ We can observe the intial values of the registers.
 
 3. **Understanding lui instruction by checking the value in the register a0.**
 
-We can see that the a0 value is updated after executing lui(load upper immediate) .
+	We can see that the a0 value is updated after executing lui(load upper immediate) .
 The value 21(in hexadecimal) is given to the register a0.
 Note that the lower 12 bits remains the same which means lui perfoms basic addition for upper 20 bits.
 ![image](https://github.com/user-attachments/assets/0b6e1405-b9a5-4b35-99eb-afc0ccca2a80)
 
-5. **Understanding addi instruction by checking the value in the register sp.**
+4. **Understanding addi instruction by checking the value in the register sp.**
 
-We observe in the calculator app that the subtraction of the intial value and final value results in 16.
+	We observe in the calculator app that the subtraction of the intial value and final value results in 16.
 So we understand that addi instrcution adds -16 to the register sp.
 ![image](https://github.com/user-attachments/assets/b8e1ef93-ed46-4d34-b464-cfd8024315a5)
 
