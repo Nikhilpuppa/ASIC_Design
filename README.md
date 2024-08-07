@@ -44,8 +44,21 @@ riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o 1tonsum.o 1tonsum.c
 riscv64-unknown-elf-objdump -d s1tonsum.o | less
 ```
 ##### 2. Output image:
-
+![image](https://github.com/user-attachments/assets/c917ef07-74b3-4941-8c98-7d2e5a365a7b)
+There are a total of 14 lines in the main section of O1 optimization.
 
  ##### Ofast optimization:
- ##### 2. Commands for compiling O1 optimization:
+ ##### 1. Commands for compiling Ofast optimization:
+ ```
+riscv64-unknown-elf-gcc -Ofast -mabi=lp64 -march=rv64i -o 1tonsum.o 1tonsum.c
+```
+```
+riscv64-unknown-elf-objdump -d s1tonsum.o | less
+```
+##### 2. Output image:
+![image](https://github.com/user-attachments/assets/c917ef07-74b3-4941-8c98-7d2e5a365a7b)
+There are a total of 11 lines in the main section of O1 optimization.
+![image](https://github.com/user-attachments/assets/63b63e54-3d8d-4b04-a695-ce6e43cc1e8d)
+
+
 
