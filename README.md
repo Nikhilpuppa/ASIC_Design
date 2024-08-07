@@ -31,3 +31,4 @@ gcc 1tonsum.c
 ./a.out
 ```
 #### 3. Output image:
+![image](https://github.com/user-attachments/assets/7b0ce050-98aa-4957-a5d1-e14883a4818c)
