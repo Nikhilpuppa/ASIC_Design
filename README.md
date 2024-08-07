@@ -21,6 +21,6 @@
 		printf("Sum of numbers from 1 to %d is %d\n",n,sum);
 		return 0;
 	}
-
+```
 #### Commands used to compile and run the code:
   
