@@ -61,6 +61,8 @@ riscv64-unknown-elf-objdump -d s1tonsum.o | less
 There are a total of 11 lines in the main section of Ofast optimization.
 ![image](https://github.com/user-attachments/assets/63b63e54-3d8d-4b04-a695-ce6e43cc1e8d)
 
+**As Ofast takes lesser number of instructions clearly Ofast is better than O1 optimization.**
+
 </details>
 
 <details><summary><strong>Lab2</strong></summary>
