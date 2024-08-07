@@ -105,6 +105,7 @@ reg 0 a2
 ```
 reg 0 sp
 ```
+We can observe the intial values of the registers.
 ![image](https://github.com/user-attachments/assets/a721d221-b60c-4ce3-9e09-fd2a0e0459c8)
 
 
