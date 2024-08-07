@@ -26,6 +26,8 @@
 #### 2. Commands used to compile and run the code:
   ```c
 gcc 1tonsum.c
+```
+```
 ./a.out
 ```
 #### 3. Output image:
