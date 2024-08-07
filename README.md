@@ -75,6 +75,15 @@ There are a total of 11 lines in the main section of Ofast optimization.
   - Spike RISC-V Simualtor
 
 ### Methodolgy:
+#### Task_1:
+##### Command to compile the C code in RISCV Complier
+ ```
+riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o 1tonsum.o 1tonsum.c
+```
+##### Alternative version ./a.out in RISCV
+```
+spike pk 1tonsum.c
+```
 
 
 </details>
