@@ -1,8 +1,6 @@
 # ASIC_Design
 <details>
-<summary>
-## Lab 1:
-</summary>
+<summary>## Lab 1: </summary>
 <br>
 ### Objective:
   - Compile and verify a simple C code (example: sum of n natural numbers) in both GCC and RISC-V GNU compiler tool chain on Ubuntu.
