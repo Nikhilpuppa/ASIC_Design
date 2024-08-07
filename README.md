@@ -93,12 +93,12 @@ Spike Simulator is often used for debugging the object file.
 ```
 spike -d pk s1tonsum.c
 ```
-1. We can start debugging from the instruction 100b0 (The start of the main function) by using the below command.
+1. **We can start debugging from the instruction 100b0 (The start of the main function) by using the below command.**
 ```
 until pc 0 100b0
 ```
 ![image](https://github.com/user-attachments/assets/df14801d-e49c-44e6-b86e-2cd159bd7c85)
-2. Check the contents in the registers
+2. **Check the contents in the registers**
 ```
 reg 0 a0
 reg 0 sp
@@ -106,13 +106,14 @@ reg 0 sp
 We can observe the intial values of the registers.
 ![image](https://github.com/user-attachments/assets/a721d221-b60c-4ce3-9e09-fd2a0e0459c8)
 
-3. Understanding lui instruction by checking the value in the register a0.
+3. **Understanding lui instruction by checking the value in the register a0.**
 We can see that the a0 value is updated after executing lui(load upper immediate) .
 The value 21(in hexadecimal) is given to the register a0.
 Note that the lower 12 bits remains the same which means lui perfoms basic addition for upper 20 bits.
 ![image](https://github.com/user-attachments/assets/0b6e1405-b9a5-4b35-99eb-afc0ccca2a80)
 
-4. Understanding addi instruction by checking the value in the register sp.
+4. **Understanding addi instruction by checking the value in the register sp.**
+
 We observe in the calculator app that the subtraction of the intial value and final value results in 16.
 So we understand that addi instrcution adds -16 to the register sp.
 ![image](https://github.com/user-attachments/assets/b8e1ef93-ed46-4d34-b464-cfd8024315a5)
