@@ -1,5 +1,6 @@
 # ASIC_Design
-## Lab 1:
+<deatils>
+<summary>Lab 1:</summary>
 ### Objective:
   - Compile and verify a simple C code (example: sum of n natural numbers) in both GCC and RISC-V GNU compiler tool chain on Ubuntu.
 ### Tools used:
@@ -59,5 +60,5 @@ riscv64-unknown-elf-objdump -d s1tonsum.o | less
 ##### 2. Output image:
 There are a total of 11 lines in the main section of O1 optimization.
 ![image](https://github.com/user-attachments/assets/63b63e54-3d8d-4b04-a695-ce6e43cc1e8d)
-
+</details>
 
