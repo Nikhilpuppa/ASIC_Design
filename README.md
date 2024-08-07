@@ -62,3 +62,9 @@ There are a total of 11 lines in the main section of O1 optimization.
 ![image](https://github.com/user-attachments/assets/63b63e54-3d8d-4b04-a695-ce6e43cc1e8d)
 
 </details>
+
+<details><summary><strong>Lab2</strong></summary>
+
+
+</details>
+
