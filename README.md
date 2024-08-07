@@ -95,9 +95,9 @@ spike -d pk s1tonsum.c
 ```
 1. **We can start debugging from the instruction 100b0 (The start of the main function) by using the below command.**
 	```
-until pc 0 100b0
-```
-![image](https://github.com/user-attachments/assets/df14801d-e49c-44e6-b86e-2cd159bd7c85)
+	until pc 0 100b0
+	```
+	![image](https://github.com/user-attachments/assets/df14801d-e49c-44e6-b86e-2cd159bd7c85)
 2. **Check the contents in the registers**
 	```
 	reg 0 a0
