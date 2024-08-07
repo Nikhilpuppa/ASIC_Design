@@ -80,10 +80,23 @@ There are a total of 11 lines in the main section of Ofast optimization.
  ```
 riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o 1tonsum.o 1tonsum.c
 ```
-##### Alternative version ./a.out in RISCV
+##### Execution of object file usign Spike Simulator
+Here in the below command, "pk" means proxy kernel.
 ```
 spike pk 1tonsum.c
 ```
+We can see that output of the code is still same as Lab1.
+![image](https://github.com/user-attachments/assets/961598e5-cf1e-4450-9102-46c4200fbcf3)
+##### Debugging using Spike Simulator
+Spike Simulator is often used for debugging thr object file.
+```
+spike -d pk s1tonsum.c
+```
+We can start debugging from the instruction 100b0 which is the strating of the main function by using the below command.
+```
+until pc 0 100b0
+```
+
 
 
 </details>
