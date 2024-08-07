@@ -94,16 +94,16 @@ Spike Simulator is often used for debugging the object file.
 spike -d pk s1tonsum.c
 ```
 1. **We can start debugging from the instruction 100b0 (The start of the main function) by using the below command.**
-```
+	```
 until pc 0 100b0
 ```
 ![image](https://github.com/user-attachments/assets/df14801d-e49c-44e6-b86e-2cd159bd7c85)
 2. **Check the contents in the registers**
-```
-reg 0 a0
-reg 0 sp
-```
-We can observe the intial values of the registers.
+	```
+	reg 0 a0
+	reg 0 sp
+	```
+	We can observe the intial values of the registers.
 ![image](https://github.com/user-attachments/assets/a721d221-b60c-4ce3-9e09-fd2a0e0459c8)
 
 3. **Understanding lui instruction by checking the value in the register a0.**
