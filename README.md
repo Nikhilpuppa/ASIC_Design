@@ -40,6 +40,12 @@ We can see the sum of numbers from 1 to 50 is 1275
  ```
 riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o 1tonsum.o 1tonsum.c
 ```
+```
+riscv64-unknown-elf-objdump -d s1tonsum.o | less
+```
 ##### 2. Output image:
-![image](https://github.com/user-attachments/assets/43d0d068-4529-4c1c-82be-ca7874942545)
+
+
+ ##### Ofast optimization:
+ ##### 2. Commands for compiling O1 optimization:
 
