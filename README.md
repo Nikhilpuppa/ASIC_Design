@@ -167,7 +167,7 @@ So we understand that addi instrcution adds -16 to the register sp.
 - **func3:** 000
 - **func7:** 0000000
 - **Instruction (Binary):** 0000000 00100 00100 000 00100 0110011
-- **Hexadecimal:** 0x002202B3
+- **Hexadecimal:** 0x00420233
 
 #### 2. **`SUB r4, r4, r4`**
 - **Type:** R
@@ -178,7 +178,7 @@ So we understand that addi instrcution adds -16 to the register sp.
 - **func3:** 000
 - **func7:** 0100000
 - **Instruction (Binary):** 0100000 00100 00100 000 00100 0110011
-- **Hexadecimal:** 0x402202B3
+- **Hexadecimal:** 0x40420233
 
 #### 3. **`AND r4, r4, r4`**
 - **Type:** R
@@ -189,7 +189,7 @@ So we understand that addi instrcution adds -16 to the register sp.
 - **func3:** 111
 - **func7:** 0000000
 - **Instruction (Binary):** 0000000 00100 00100 111 00100 0110011
-- **Hexadecimal:** 0x007202B3
+- **Hexadecimal:** 0x00427233
 
 #### 4. **`OR r8, r4, r5`**
 - **Type:** R
@@ -200,7 +200,7 @@ So we understand that addi instrcution adds -16 to the register sp.
 - **func3:** 110
 - **func7:** 0000000
 - **Instruction (Binary):** 0000000 00101 00100 110 01000 0110011
-- **Hexadecimal:** 0x005242B3
+- **Hexadecimal:** 0x00526433
 
 #### 5. **`XOR r8, r4, r4`**
 - **Type:** R
@@ -211,7 +211,7 @@ So we understand that addi instrcution adds -16 to the register sp.
 - **func3:** 100
 - **func7:** 0000000
 - **Instruction (Binary):** 0000000 00100 00100 100 01000 0110011
-- **Hexadecimal:** 0x004202B3
+- **Hexadecimal:** 0x00424433
 
 #### 6. **`SLT r00, r1, r4`**
 - **Type:** R
@@ -222,7 +222,7 @@ So we understand that addi instrcution adds -16 to the register sp.
 - **func3:** 010
 - **func7:** 0000000
 - **Instruction (Binary):** 0000000 00100 00001 010 00000 0110011
-- **Hexadecimal:** 0x00402033
+- **Hexadecimal:** 0x0040A033
 
 #### 7. **`ADDI r02, r2, 5`**
 - **Type:** I
@@ -232,7 +232,7 @@ So we understand that addi instrcution adds -16 to the register sp.
 - **imm:** 000000000101 (5)
 - **func3:** 000
 - **Instruction (Binary):** 000000000101 00010 000 00010 0010011
-- **Hexadecimal:** 0x00510213
+- **Hexadecimal:** 0x00510113
 
 #### 8. **`SW r2, r0, 4`**
 - **Type:** S
@@ -242,7 +242,7 @@ So we understand that addi instrcution adds -16 to the register sp.
 - **imm:** 000000000100 (4)
 - **func3:** 010
 - **Instruction (Binary):** 000000000100 00000 010 00010 0100011
-- **Hexadecimal:** 0x00400223
+- **Hexadecimal:** 0x00402123
 
 #### 9. **`SRL r06, r01, r1`**
 - **Type:** R
@@ -253,7 +253,7 @@ So we understand that addi instrcution adds -16 to the register sp.
 - **func3:** 101
 - **func7:** 0000000
 - **Instruction (Binary):** 0000000 00001 00001 101 00110 0110011
-- **Hexadecimal:** 0x001302B3
+- **Hexadecimal:** 0x0010D333
 
 #### 10. **`BNE r0, r0, 20`**
 - **Type:** B
@@ -262,8 +262,8 @@ So we understand that addi instrcution adds -16 to the register sp.
 - **rs2:** 00000 (r0)
 - **imm:** 00000000010100 (20)
 - **func3:** 001
-- **Instruction (Binary):** 00000000010100 00000 001 00000 1100011
-- **Hexadecimal:** 0x01400063
+- **Instruction (Binary):** 000000010100 00000 001 00000 1100011
+- **Hexadecimal:** 0x01401063
 
 #### 11. **`BEQ r0, r0, 15`**
 - **Type:** B
@@ -272,7 +272,7 @@ So we understand that addi instrcution adds -16 to the register sp.
 - **rs2:** 00000 (r0)
 - **imm:** 00000000001111 (15)
 - **func3:** 000
-- **Instruction (Binary):** 00000000001111 00000 000 00000 1100011
+- **Instruction (Binary):** 000000001111 00000 000 00000 1100011
 - **Hexadecimal:** 0x00F00063
 
 #### 12. **`LW r03, r01, 2`**
@@ -283,7 +283,7 @@ So we understand that addi instrcution adds -16 to the register sp.
 - **imm:** 000000000010 (2)
 - **func3:** 010
 - **Instruction (Binary):** 000000000010 00001 010 00011 0000011
-- **Hexadecimal:** 0x00210283
+- **Hexadecimal:** 0x0020A183
 
 #### 13. **`SLL r05, r01, r1`**
 - **Type:** R
@@ -294,25 +294,51 @@ So we understand that addi instrcution adds -16 to the register sp.
 - **func3:** 001
 - **func7:** 0000000
 - **Instruction (Binary):** 0000000 00001 00001 001 00101 0110011
-- **Hexadecimal:** 0x001282B3
+- **Hexadecimal:** 0x001092B3
 ### RISC-V Instructions Summary
 
-| Instruction         | Type | 32-bit Pattern                          | Hexadecimal |
-|---------------------|------|-----------------------------------------|-------------|
-| `ADD r4, r4, r4`   | R    | `0000000 00100 00100 000 00100 0110011` | 0x002202B3  |
-| `SUB r4, r4, r4`   | R    | `0100000 00100 00100 000 00100 0110011` | 0x402202B3  |
-| `AND r4, r4, r4`   | R    | `0000000 00100 00100 111 00100 0110011` | 0x007202B3  |
-| `OR r8, r4, r5`    | R    | `0000000 00101 00100 110 01000 0110011` | 0x005242B3  |
-| `XOR r8, r4, r4`   | R    | `0000000 00100 00100 100 01000 0110011` | 0x004202B3  |
-| `SLT r00, r1, r4`  | R    | `0000000 00100 00001 010 00000 0110011` | 0x00402033  |
-| `ADDI r02, r2, 5`  | I    | `000000000101 00010 000 00010 0010011` | 0x00510213  |
-| `SW r2, r0, 4`     | S    | `000000000100 00000 010 00010 0100011` | 0x00400223  |
-| `SRL r06, r01, r1` | R    | `0000000 00001 00001 101 00110 0110011` | 0x001302B3  |
-| `BNE r0, r0, 20`   | B    | `00000000010100 00000 001 00000 1100011` | 0x01400063  |
-| `BEQ r0, r0, 15`   | B    | `00000000001111 00000 000 00000 1100011` | 0x00F00063  |
-| `LW r03, r01, 2`   | I    | `000000000010 00001 010 00011 0000011` | 0x00210283  |
-| `SLL r05, r01, r1` | R    | `0000000 00001 00001 001 00101 0110011` | 0x001282B3  |
+| Instruction        | Type | Opcode  | rd   | rs1  | rs2  | func3 | func7   | Binary Instruction                          | Hexadecimal |
+|--------------------|------|---------|------|------|------|--------|---------|---------------------------------------------|-------------|
+| `ADD r4, r4, r4`  | R    | 0110011 | 00010 | 00010 | 00010 | 000    | 0000000 00100 00100 000 00100 0110011     | 0x00420233  |
+| `SUB r4, r4, r4`  | R    | 0110011 | 00010 | 00010 | 00010 | 000    | 0100000 00100 00100 000 00100 0110011     | 0x40420233  |
+| `AND r4, r4, r4`  | R    | 0110011 | 00010 | 00010 | 00010 | 111    | 0000000 00100 00100 111 00100 0110011     | 0x00427233  |
+| `OR r8, r4, r5`   | R    | 0110011 | 01000 | 00100 | 00101 | 110    | 0000000 00101 00100 110 01000 0110011     | 0x00526433  |
+| `XOR r8, r4, r4`  | R    | 0110011 | 01000 | 00100 | 00100 | 100    | 0000000 00100 00100 100 01000 0110011     | 0x00424433  |
+| `SLT r00, r1, r4` | R    | 0110011 | 00000 | 00001 | 00100 | 010    | 0000000 00100 00001 010 00000 0110011     | 0x0040A033  |
+| `ADDI r02, r2, 5` | I    | 0010011 | 00010 | 00010 | -    | 000    | 000000000101 00010 000 00010 0010011     | 0x00510113  |
+| `SW r2, r0, 4`    | S    | 0100011 | -    | 00000 | 00010 | 010    | 000000000100 00000 010 00010 0100011     | 0x00402123  |
+| `SRL r06, r01, r1`| R    | 0110011 | 00110 | 00001 | 00001 | 101    | 0000000 00001 00001 101 00110 0110011     | 0x0010D333  |
+| `BNE r0, r0, 20`  | B    | 1100011 | -    | 00000 | 00000 | 001    | 000000010100 00000 001 00000 1100011     | 0x01401063  |
+| `BEQ r0, r0, 15`  | B    | 1100011 | -    | 00000 | 00000 | 000    | 000000001111 00000 000 00000 1100011     | 0x00F00063  |
+| `LW r03, r01, 2`  | I    | 0000011 | 00011 | 00001 | -    | 010    | 000000000010 00001 010 00011 0000011     | 0x0020A183  |
+| `SLL r05, r01, r1`| R    | 0110011 | 00101 | 00001 | 00001 | 001    | 0000000 00001 00001 001 00101 0110011     | 0x001092B3  |
 
+
+
+</details>
+
+<details><summary><strong>Lab4</strong></summary>
+	
+ ### Objective: 
+  - Simulate the RISCV instruction
+ ### Procdeure:
+  -In the Verilog code, each instruction type is assigned a unique opcode, and the instructions have specific func3 and func7 values that differ from the original RISC-V specifications. The func7 value is used to differentiate between immediate operations and other arithmetic functions. If func7 is not utilized for this purpose, it is set to b'0 in the Verilog code.
+  - This table contains the hard coded 32 bit instruction for the given RISCV instructions in Lab3
+    
+
+| Sno | Instruction         | Hardcoded 32-bit Pattern                  | Hexadecimal Pattern | 32-bit Pattern                        | Hexadecimal |
+|-----|---------------------|-------------------------------------------|---------------------|---------------------------------------|-------------|
+| 1   | `ADD r4, r4, r4`    | `0000001 00100 00100 000 00100 0000000`   | 0x002202B3          | `0000000 00100 00100 000 00100 0110011` | 0x004202B3  |
+| 2   | `SUB r4, r4, r4`    | `0000001 00100 00100 001 00100 0000000`   | 0x402202B3          | `0100000 00100 00100 000 00100 0110011` | 0x402202B3  |
+| 3   | `AND r4, r4, r4`    | `0000001 00100 00100 010 00100 0000000`   | 0x007202B3          | `0000000 00100 00100 111 00100 0110011` | 0x007202B3  |
+| 4   | `OR r8, r4, r5`     | `0000001 00101 00100 011 01000 0000000`   | 0x005242B3          | `0000000 00101 00100 110 01000 0110011` | 0x005242B3  |
+| 5   | `XOR r8, r4, r4`    | `0000001 00100 00100 100 01000 0000000`   | 0x004202B3          | `0000000 00100 00100 100 01000 0110011` | 0x004202B3  |
+| 6   | `SLT r00, r1, r4`   | `0000001 00100 00001 101 00000 0000000`   | 0x00402033          | `0000000 00100 00001 010 00000 0110011` | 0x00402033  |
+| 7   | `ADDI r02, r2, 5`   | `000000000101 00010 000 00010 0000000`    | 0x00510213          | `000000000101 00010 000 00010 0010011`  | 0x00510213  |
+| 8   | `SW r2, r0, 4`      | `000000 000100 00000 001 00010 0000001`   | 0x00400223          | `000000000100 00000 010 00010 0100011`  | 0x00400223  |
+| 9   | `SRL r06, r01, r1`  | `0000000 00001 00001 001 00110 0000011`   | 0x001302B3          | `0000000 00001 00001 101 00110 0110011` | 0x001302B3  |
+| 10  | `BEQ r0, r0, 15`    | `000000001111 00000 000 00000 0000010`    | 0x00F00063          | `000000001111 00000 000 00000 1100011` | 0x00F00063  |
+| 11  | `LW r03, r01, 2`    | `000000000010 00001 010 00011 0000011`    | 0x00210283          | `000000000010 00001 010 00011 0000011`  | 0x00210283  |
 
 
 </details>
