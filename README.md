@@ -138,6 +138,7 @@ So we understand that addi instrcution adds -16 to the register sp.
  ![image](https://github.com/user-attachments/assets/ebfe1668-74d0-476a-a280-d34f80b4052d)
 ### Procedure:
 - Given RISCV instructions are
+  
   ```
  ADD r4, r4, r4
  SUB r4, r4, r4
@@ -152,7 +153,6 @@ So we understand that addi instrcution adds -16 to the register sp.
  BEQ r0, r0, 15
  LW r03, r01, 2
  SLL r05, r01, r1 
-
  ```
 
 1.``` ADD r4, r4, r4 ```
