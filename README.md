@@ -156,8 +156,6 @@ So we understand that addi instrcution adds -16 to the register sp.
 ```
 
 
-## RISC-V Instructions Encoding
-
 ### Instructions and Their Encodings
 
 #### 1. **`ADD r4, r4, r4`**
