@@ -136,11 +136,6 @@ So we understand that addi instrcution adds -16 to the register sp.
    ![image](https://github.com/user-attachments/assets/daad8ba5-5964-4cd9-9968-1be21f65fd71)
    #### R-type:
    -The R-type (Register-type) instructions in RISC-V are used for operations that involve only registers. These operations typically include arithmetic, logical, shift, and comparison operations. The R-type format uses three registers: two source registers (rs1 and rs2) and one destination register (rd).
-   ```
-     31      25  24  20  19  15  14  12  11   7  6       0
-   -----------------------------------------------------
-  | funct7  | rs2 | rs1 | funct3 | rd |  opcode  |
-   -----------------------------------------------------
- ```
+
 
 </details>
