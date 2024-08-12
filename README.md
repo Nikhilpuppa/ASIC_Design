@@ -347,6 +347,7 @@ So we understand that addi instrcution adds -16 to the register sp.
 ### Output WaveForm:
 
 ``` ADD r5, r4, r5 ```
+
 ![image](https://github.com/user-attachments/assets/cbf23082-1b95-4b73-93d2-1d89a50ed8e6)
 
 
