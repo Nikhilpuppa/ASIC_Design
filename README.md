@@ -353,19 +353,23 @@ So we understand that addi instrcution adds -16 to the register sp.
 
 ``` SUB r7, r1, r2  ```
 
+
  ![image](https://github.com/user-attachments/assets/97e14855-3f17-4f94-8ee1-970fe52b5e7d)
  
 
  ``` AND r8, r1, r3 ```
+ 
 
  ![image](https://github.com/user-attachments/assets/0a861382-5687-4349-9922-d2cc806ba511)
  
 
  ``` OR r9, r2, r5  ```
+ 
 ![image](https://github.com/user-attachments/assets/e09a563c-0268-4c2c-89fc-720e4c84519f)
 
 
 ``` XOR r10, r1, r4 ```
+
 ![image](https://github.com/user-attachments/assets/a8a0ee27-6c15-4eb3-be80-a9b645637a92)
 
 
