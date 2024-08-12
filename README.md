@@ -155,9 +155,50 @@ So we understand that addi instrcution adds -16 to the register sp.
  SLL r05, r01, r1 
 ```
 
+
  #### ADD r4, r4, r4 
-   -
-    
+   - **Type** : R
+   - **Opcode** : 0110011
+   - **rd** : 00010 (r4)
+   - **rs1** : 00010 (r4)
+   - **rs2** : 00010 (r4)
+   - **func3** : 000
+   - **func7** : 0000000
+   - **Instruction** : 0000000 00100 00100 000 00100 0110011
+   - **HexaDecimal** : 0x002202B3
+
+ #### SUB r4, r4, r4 
+   - **Type** : R
+   - **Opcode** : 0110011
+   - **rd** : 00010 (r4)
+   - **rs1** : 00010 (r4)
+   - **rs2** : 00010 (r4)
+   - **func3** : 000
+   - **func7** : 0100000
+   - **Instruction** : 0100000 00100 00100 000 00100 0110011
+   - **HexaDecimal** : 0x402202B3
+
+ #### AND r4, r4, r4 
+   - **Type** : R
+   - **Opcode** : 0110011
+   - **rd** : 00010 (r4)
+   - **rs1** : 00010 (r4)
+   - **rs2** : 00010 (r4)
+   - **func3** : 111
+   - **func7** : 0100000
+   - **Instruction** : 0000000 00100 00100 111 00100 0110011
+   - **HexaDecimal** : 0x007202B3
+
+ #### OR r8, r4, r5
+   - **Type** : R
+   - **Opcode** : 0110011
+   - **rd** : 01000 (r8)
+   - **rs1** : 00100 (r4)
+   - **rs2** : 00101 (r5)
+   - **func3** : 110
+   - **func7** : 0100000
+   - **Instruction** : 0000000 00101 00100 110 01000 0110011
+   - **HexaDecimal** : 0x005242B3  
 
 
 
