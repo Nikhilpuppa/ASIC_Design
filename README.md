@@ -350,10 +350,20 @@ So we understand that addi instrcution adds -16 to the register sp.
 
 ![image](https://github.com/user-attachments/assets/cbf23082-1b95-4b73-93d2-1d89a50ed8e6)
 
+
 ``` SUB r5, r5, r4 ```
+
  ![image](https://github.com/user-attachments/assets/97e14855-3f17-4f94-8ee1-970fe52b5e7d)
+ 
 
  ``` AND r4, r5, r5 ```
+
+ ![image](https://github.com/user-attachments/assets/0a861382-5687-4349-9922-d2cc806ba511)
+
+ ``` OR r8, r4, r5 ```
+
+
+
  
 
 
