@@ -134,8 +134,31 @@ So we understand that addi instrcution adds -16 to the register sp.
  - The six main instruction formats in RISC-V are R-Type, I-Type, S-Type, B-Type, U-Type, and J-Type. Each format is tailored for specific tasks such as arithmetic and logic operations, working with immediate values, branching, memory access, and jump instructions.
  - This image shows the instruction format for various RISC-V instructiopn types.
    ![image](https://github.com/user-attachments/assets/daad8ba5-5964-4cd9-9968-1be21f65fd71)
-   #### R-type:
-   -The R-type (Register-type) instructions in RISC-V are used for operations that involve only registers. These operations typically include arithmetic, logical, shift, and comparison operations. The R-type format uses three registers: two source registers (rs1 and rs2) and one destination register (rd).
+ - this image shows the base instruction set table for predeined values
+ ![image](https://github.com/user-attachments/assets/ebfe1668-74d0-476a-a280-d34f80b4052d)
+### Procedure:
+- Given RISCV instructions are
+  ```
+ ADD r4, r4, r4
+ SUB r4, r4, r4
+ AND r4, r4, r4
+ OR r8, r4, r5
+ XOR r8, r4, r4
+ SLT r00, r1, r4
+ ADDI r02, r2, 5
+ SW r2, r0, 4
+ SRL r06, r01, r1
+ BNE r0, r0, 20
+ BEQ r0, r0, 15
+ LW r03, r01, 2
+ SLL r05, r01, r1 
+
+ ```
+
+1.``` ADD r4, r4, r4 ```
+- 
+
+
 
 
 </details>
