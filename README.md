@@ -155,7 +155,7 @@ So we understand that addi instrcution adds -16 to the register sp.
  SLL r05, r01, r1 
 ```
 
- ADD r4, r4, r4 
+ #### ADD r4, r4, r4 
    -
     
 
