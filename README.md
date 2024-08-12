@@ -185,7 +185,7 @@ So we understand that addi instrcution adds -16 to the register sp.
    - **rs1** : 00010 (r4)
    - **rs2** : 00010 (r4)
    - **func3** : 111
-   - **func7** : 0100000
+   - **func7** : 0000000
    - **Instruction** : 0000000 00100 00100 111 00100 0110011
    - **HexaDecimal** : 0x007202B3
 
