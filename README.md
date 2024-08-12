@@ -383,6 +383,25 @@ So we understand that addi instrcution adds -16 to the register sp.
 
 8. ``` SW r3, r1, 2 ```
 
+![image](https://github.com/user-attachments/assets/88e47ae3-a8d3-4e70-b031-4f312a1c1d86)
+
+9. ```  LW r0, r0, 15  ```
+
+   ![image](https://github.com/user-attachments/assets/4fecc4b2-6f2f-4ac1-85e8-d9aea0acd91b)
+
+10. ``` BEQ r0, r0, 15 ```
+
+ ![image](https://github.com/user-attachments/assets/837fffa7-fba9-4039-96fe-9641fb0f7f34)
+ 
+
+ 11. ``` ADD r14, r2, r2 ```
+
+ ![image](https://github.com/user-attachments/assets/d396a1c2-8c54-4f39-b107-29479d6cc627)
+
+ 
+
+
+
 
 
 
