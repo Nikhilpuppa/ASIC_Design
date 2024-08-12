@@ -295,7 +295,7 @@ So we understand that addi instrcution adds -16 to the register sp.
 - **func7:** 0000000
 - **Instruction (Binary):** 0000000 00001 00001 001 00101 0110011
 - **Hexadecimal:** 0x001282B3
-## RISC-V Instructions Summary
+### RISC-V Instructions Summary
 
 | Instruction         | Type | 32-bit Pattern                          | Hexadecimal |
 |---------------------|------|-----------------------------------------|-------------|
