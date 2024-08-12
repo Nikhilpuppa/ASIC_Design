@@ -399,6 +399,9 @@ So we understand that addi instrcution adds -16 to the register sp.
  ![image](https://github.com/user-attachments/assets/d396a1c2-8c54-4f39-b107-29479d6cc627)
 
  
+**Final Output**
+
+![image](https://github.com/user-attachments/assets/a50a8aa6-151a-445c-a51f-561af167ae0a)
 
 
 
