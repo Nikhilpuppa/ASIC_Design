@@ -387,7 +387,7 @@ So we understand that addi instrcution adds -16 to the register sp.
 
 9. ```  LW r0, r0, 15  ```
 
-   ![image](https://github.com/user-attachments/assets/4fecc4b2-6f2f-4ac1-85e8-d9aea0acd91b)
+ ![image](https://github.com/user-attachments/assets/4fecc4b2-6f2f-4ac1-85e8-d9aea0acd91b)
 
 10. ``` BEQ r0, r0, 15 ```
 
