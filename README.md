@@ -344,6 +344,12 @@ So we understand that addi instrcution adds -16 to the register sp.
 | 10  | `BEQ r0, r0, 15`    | `000000001111 00000 000 00000 0000010`    | 0x00F00002          | `000000001111 00000 000 00000 1100011` | 0x00F00063  |
 | 11  | `LW r03, r01, 2`    | `000000000010 00001 010 00011 0000011`    | 0x0020A183          | `000000000010 00001 010 00011 0000011`  | 0x0020A183  |
 
+### Output WaveForm:
+
+``` ADD r5, r4, r5 ```
+![image](https://github.com/user-attachments/assets/cbf23082-1b95-4b73-93d2-1d89a50ed8e6)
+
+
 
 
 
