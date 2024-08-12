@@ -326,7 +326,7 @@ So we understand that addi instrcution adds -16 to the register sp.
  ### Objective: 
   - Simulate the RISCV instruction
  ### Procdeure:
-  -In the Verilog code, each instruction type is assigned a unique opcode, and the instructions have specific func3 and func7 values that differ from the original RISC-V specifications. The func7 value is used to differentiate between immediate operations and other arithmetic functions. If func7 is not utilized for this purpose, it is set to b'0 in the Verilog code.
+  - In the Verilog code, each instruction type is assigned a unique opcode, and the instructions have specific func3 and func7 values that differ from the original RISC-V specifications. The func7 value is used to differentiate between immediate operations and other arithmetic functions. If func7 is not utilized for this purpose, it is set to b'0 in the Verilog code.
   - This table contains the hard coded 32 bit instruction for the given RISCV instructions in Lab3
     
 
