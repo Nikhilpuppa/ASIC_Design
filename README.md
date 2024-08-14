@@ -402,6 +402,13 @@ So we understand that addi instrcution adds -16 to the register sp.
 **Final Output**
 
 ![image](https://github.com/user-attachments/assets/a50a8aa6-151a-445c-a51f-561af167ae0a)
+
+
+
+</details>
+
+<details><summary><strong>Lab5</strong></summary>
+
 ### Objective:
   -  To verify that the output of the below code is same for both riscv-gcc and gcc compiler
 
@@ -526,10 +533,9 @@ void displayDashboard() {
 
 ```
 
-</details>
 
 
-<details><summary><strong>Lab5</strong></summary>
+
 
 </details>
 
