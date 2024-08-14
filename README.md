@@ -550,9 +550,12 @@ void displayDashboard() {
 
 
  ``` 
- riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o vehcile_dashbord.o vehicle_dashboard.c
+ riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o vehicle_dashboard.o vehicle_dashboard.c
 ```
 
+```
+spike pk vehicle_dashboard.o
+```
 
 ### Code Output :
 
@@ -564,7 +567,9 @@ void displayDashboard() {
 
    ![image](https://github.com/user-attachments/assets/5387375b-7757-410c-8e5b-a37362856bef)
 
+## Conclusion:
 
+ - We observe that the C code executes same in both GCC and RISCV .
 
 
 </details>
