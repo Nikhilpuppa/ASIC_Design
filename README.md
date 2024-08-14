@@ -415,7 +415,7 @@ So we understand that addi instrcution adds -16 to the register sp.
 ### Code:
   - This function creates a simple dashboard to gte vehicle info. Also it contains functions to get and set values.
 
-```
+```c
 #include <stdio.h>
 
 void setEngineTemp(int temp);
