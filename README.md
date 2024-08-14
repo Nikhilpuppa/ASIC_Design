@@ -413,6 +413,7 @@ So we understand that addi instrcution adds -16 to the register sp.
   -  To verify that the output of the below code is same for both riscv-gcc and gcc compiler
 
 ### Code:
+  - This function creates a simple dashboard to gte vehicle info. Also it contains functions to get and set values.
 
 ```
 #include <stdio.h>
@@ -533,7 +534,27 @@ void displayDashboard() {
 
 ```
 
+### Compiling and Executing the code:
 
+1) **In GCC**
+
+ ``` gcc vehicle_dashboard.c ```
+ 
+ ``` ./a.out ```
+
+2) **In RISCV**
+
+ ``` riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o vehcile_dashbord.o vehicle_dashboard.c ```
+
+### Code Output :
+
+1) **In GCC**
+   
+   ![image](https://github.com/user-attachments/assets/3c05b5c1-c691-41b2-b905-f9e74aeb3f23)
+
+2) **In RISCV**
+
+   
 
 
 
