@@ -402,30 +402,134 @@ So we understand that addi instrcution adds -16 to the register sp.
 **Final Output**
 
 ![image](https://github.com/user-attachments/assets/a50a8aa6-151a-445c-a51f-561af167ae0a)
+### Objective:
+  -  To verify that the output of the below code is same for both riscv-gcc and gcc compiler
+
+### Code:
+
+```
+#include <stdio.h>
+
+void setEngineTemp(int temp);
+int getEngineTemp();
+void setFuelLevel(int level);
+int getFuelLevel();
+void setBatteryVoltage(float voltage);
+float getBatteryVoltage();
+void displayDashboard();
 
 
+int engineTemp;
+int fuelLevel;
+float batteryVoltage;
+
+int main() {
+    int choice;
+    int temp, level;
+    float voltage;
+
+    setEngineTemp(90);
+    setFuelLevel(50);
+    setBatteryVoltage(12.5);
+
+    do {
+        displayDashboard();
+        printf("Enter your choice (1-7): ");
+        scanf("%d", &choice);
+
+        switch(choice) {
+            case 1:
+                printf("Enter new Engine Temperature (°C): ");
+                scanf("%d", &temp);
+                setEngineTemp(temp);
+                printf("Engine Temperature updated to %d°C\n", getEngineTemp());
+                break;
+
+            case 2:
+                printf("Current Engine Temperature: %d°C\n", getEngineTemp());
+                break;
+
+            case 3:
+                printf("Enter new Fuel Level (%%): ");
+                scanf("%d", &level);
+                setFuelLevel(level);
+                printf("Fuel Level updated to %d%%\n", getFuelLevel());
+                break;
+
+            case 4:
+                printf("Current Fuel Level: %d%%\n", getFuelLevel());
+                break;
+
+            case 5:
+                printf("Enter new Battery Voltage (V): ");
+                scanf("%f", &voltage);
+                setBatteryVoltage(voltage);
+                printf("Battery Voltage updated to %.1f V\n", getBatteryVoltage());
+                break;
+
+            case 6:
+                printf("Current Battery Voltage: %.1f V\n", getBatteryVoltage());
+                break;
+
+            case 7:
+                printf("Exiting the dashboard...\n");
+                break;
+
+            default:
+                printf("Invalid choice. Please select a valid option.\n");
+        }
+    } while(choice != 7);
+
+    return 0;
+}
 
 
+void setEngineTemp(int temp) {
+    engineTemp = temp;
+}
 
 
+int getEngineTemp() {
+    return engineTemp;
+}
 
 
+void setFuelLevel(int level) {
+    fuelLevel = level;
+}
 
 
+int getFuelLevel() {
+    return fuelLevel;
+}
 
 
+void setBatteryVoltage(float voltage) {
+    batteryVoltage = voltage;
+}
 
 
- 
+float getBatteryVoltage() {
+    return batteryVoltage;
+}
 
+void displayDashboard() {
+    printf("\n--- Dashboard ---\n");
+    printf("1. Set Engine Temperature\n");
+    printf("2. Get Engine Temperature\n");
+    printf("3. Set Fuel Level\n");
+    printf("4. Get Fuel Level\n");
+    printf("5. Set Battery Voltage\n");
+    printf("6. Get Battery Voltage\n");
+    printf("7. Exit\n");
+}
 
-
- 
-
-
-
-
-
-
+```
 
 </details>
+
+
+<details><summary><strong>Lab5</strong></summary>
+
+</details>
+
