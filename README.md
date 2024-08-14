@@ -538,13 +538,21 @@ void displayDashboard() {
 
 1) **In GCC**
 
- ``` gcc vehicle_dashboard.c ```
+ ``` 
+ gcc vehicle_dashboard.c
+ ```
  
- ``` ./a.out ```
+ ``` 
+ ./a.out
+ ```
 
 2) **In RISCV**
 
- ``` riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o vehcile_dashbord.o vehicle_dashboard.c ```
+
+ ``` 
+ riscv64-unknown-elf-gcc -O1 -mabi=lp64 -march=rv64i -o vehcile_dashbord.o vehicle_dashboard.c
+```
+
 
 ### Code Output :
 
@@ -554,7 +562,8 @@ void displayDashboard() {
 
 2) **In RISCV**
 
-   
+   ![image](https://github.com/user-attachments/assets/5387375b-7757-410c-8e5b-a37362856bef)
+
 
 
 
