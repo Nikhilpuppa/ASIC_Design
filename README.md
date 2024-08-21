@@ -742,6 +742,80 @@ $cnt[31:0] = $reset ? 0 : (>>1$cnt + 1);
   ![failed](https://github.com/user-attachments/assets/e30db172-25e2-4b5e-8ef7-eebe0988f242)
 
 2)**Pipelined Calculator**:
+- Valid is also used to create alternate values of reset.
+
+```c
+   |cal
+      @1
+         $reset = *reset;
+         $clk_nik = *clk;
+
+         $valid[31:0] = $reset ? 0 : (>>1$valid + 1);
+         $nreset = $reset | ~$valid;
+         
+         $val1[31:0] = >>2$out;
+         $val2[31:0] = $rand2[3:0];
+
+         $sum[31:0]  = $val1[31:0] + $val2[31:0];
+         $diff[31:0] = $val1[31:0] - $val2[31:0];
+         $prod[31:0] = $val1[31:0] * $val2[31:0];
+         $quot[31:0] = $val1[31:0] / $val2[31:0];
+         
+      @2
+         $nxt[31:0] = ($sel[1:0] == 2'b00) ? $sum[31:0]:
+                      ($sel[1:0] == 2'b01) ? $diff[31:0]:
+                      ($sel[1:0] == 2'b10) ? $prod[31:0]:
+                                             $quot[31:0];
+        
+         
+         $out[31:0] = $nreset ? 32'h0 : $nxt;   
+   ```
+![image](https://github.com/user-attachments/assets/686e1ca7-4438-42aa-86eb-2606269f050f)
+
+![cal2](https://github.com/user-attachments/assets/2648f019-65f9-4f23-b192-af8474ad53c5)
+
+
+3)**Cycle Calculator with validity:**:
+
+
+```c
+   $reset = *reset;
+   $clk_nik = *clk;
+   
+   |cal
+      @1
+         $reset = *reset;
+         $clk_kar = *clk;
+         
+         $cnt[31:0] = $reset ? 0 : (>>1$cnt + 1);
+         $valid = $cnt;
+         $valid_or_reset = ($reset | $valid);
+         
+      
+      ?$valid
+         @1
+            $val1[31:0] = >>2$out;
+            $val2[31:0] = $rand2[3:0];
+            
+            $sum[31:0]  = $val1[31:0] + $val2[31:0];
+            $diff[31:0] = $val1[31:0] - $val2[31:0];
+            $prod[31:0] = $val1[31:0] * $val2[31:0];
+            $quot[31:0] = $val1[31:0] / $val2[31:0];
+            
+         @2
+            $nxt[31:0] = ($sel[1:0] == 2'b00) ? $sum[31:0]:
+                         ($sel[1:0] == 2'b01) ? $diff[31:0]:
+                         ($sel[1:0] == 2'b10) ? $prod[31:0]:
+                                                $quot[31:0];
+            
+            $out[31:0] = $valid_or_reset ? 32'h0 : $nxt;
+
+```
+
+![image](https://github.com/user-attachments/assets/b98d65db-d374-42ad-a783-ce6bc55dc519)
+ 
+            
+            
 
 
 
