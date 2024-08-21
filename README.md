@@ -911,9 +911,104 @@ $cnt[31:0] = $reset ? 0 : (>>1$cnt + 1);
 
         ![image](https://github.com/user-attachments/assets/b4af4364-65b4-42d2-8dd5-b9c66e996da5)
 
+    **Decoding Individual Instructions**:
+    - The task is the decode the circled individual instructions. This achieved by using the below code
+      ```c
+      $dec_bits [10:0] = {$funct7[5], $funct3, $opcode};
+      $is_beq = $dec_bits ==? 11'bx_000_1100011;
+      $is_bne = $dec_bits ==? 11'bx_001_1100011;
+      $is_blt = $dec_bits ==? 11'bx_100_1100011;
+      $is_bge = $dec_bits ==? 11'bx_101_1100011;
+      $is_bltu = $dec_bits ==? 11'bx_110_1100011;
+      $is_bgeu = $dec_bits ==? 11'bx_111_1100011;
+      $is_addi = $dec_bits ==? 11'bx_000_0010011;
+      $is_add = $dec_bits ==? 11'b0_000_0110011;
+      ```
+    - Also the PC should be updated in order to account Branch instructions.
+      ```c
+      $pc[31:0] = >>1$reset ? 32'b0 :
+            >>1$taken_branch ? >>1$br_target_pc :
+            >>1$pc + 32'd4;
+      ```
+    - The waveforms are attached below
+      ![image](https://github.com/user-attachments/assets/2529f7f2-f3af-4c5c-b021-3224d2cd5700)
 
-
+    **4)Register File Read and Enable**
+    - In this stage we read instructons from instruction memory and store them in registers.
+    - We have two register slots that read the instructions, and these stored instructions are then sent to the ALU for processing.
       
+      ![image](https://github.com/user-attachments/assets/1d345e3e-fa9c-48d8-a508-a97438aae225)
+
+    ```c
+    $rf_rd_en1 = $rs1_valid;
+    $rf_rd_en2 = $rs2_valid;
+    $rf_rd_index1[4:0] = $rs1;
+    $rf_rd_index2[4:0] = $rs2;
+    $src1_value[31:0] = $rf_rd_data1;
+    $src2_value[31:0] = $rf_rd_data2;  
+    ```
+
+   - The waveform for the same is shown below
+    ![image](https://github.com/user-attachments/assets/fd998880-8f81-404d-8354-8f2c49f26a0a)
+
+   **5)ALU**
+    ![image](https://github.com/user-attachments/assets/bff09f8b-c0ef-435d-9411-64a2a27cbe72)
+    
+   - This snippet accounts for addi and add operations.
+   ```c
+   $result[31:0] = $is_addi ? $src1_value + $imm :
+                $is_add ? $src1_value + $src2_value :
+                32'bx ;
+   ```
+   ![image](https://github.com/user-attachments/assets/4a35daf0-0dee-4f25-856c-e5240e679374)
+
+
+   **6)Register File write**
+   
+   ![image](https://github.com/user-attachments/assets/5ecb817f-bbb3-444f-a4e6-bd97565a5c4e)
+
+   ```c
+   $rf_wr_en = $rd_valid && $rd != 5'b0;
+   $rf_wr_index[4:0] = $rd;
+   $rf_wr_data[31:0] = $result;
+   ```
+  ![image](https://github.com/user-attachments/assets/4c3c5d1b-50c8-4658-98d7-d3127698e41e)
+
+
+  **7)Branch Instructions**
+  ![image](https://github.com/user-attachments/assets/d6b8811f-c225-4b7c-8f01-115be7baa298)
+  
+  ```c
+  $taken_branch = $is_beq ? ($src1_value == $src2_value):
+                $is_bne ? ($src1_value != $src2_value):
+                $is_blt ? (($src1_value < $src2_value) ^ ($src1_value[31] != $src2_value[31])):
+                $is_bge ? (($src1_value >= $src2_value) ^ ($src1_value[31] != $src2_value[31])):
+                $is_bltu ? ($src1_value < $src2_value):
+                $is_bgeu ? ($src1_value >= $src2_value):1'b0;
+
+ $br_target_pc[31:0] = $pc +$imm;
+ ```
+![image](https://github.com/user-attachments/assets/f8df5ed5-0864-4b90-ab1e-7019757d0699)
+
+
+  **Test Bench**
+  
+  ```c
+  *passed = |cpu/xreg[10]>>5$value == (1+2+3+4+5+6+7+8+9) ;
+  ```
+
+ ![image](https://github.com/user-attachments/assets/45a1f671-9342-4f18-ac81-cd9410b9314d)
+
+
+
+
+
+
+
+
+
+
+
       
  </details>
 
