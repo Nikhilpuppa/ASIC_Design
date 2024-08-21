@@ -1329,21 +1329,28 @@ $src2_value[31:0] = $rs2_bypass ? >>1$result[31:0] : $rf_rd_data2[31:0];
    endmodule
 ```
 
+
 **Block Diagram**:
+
 ![image](https://github.com/user-attachments/assets/d1ecabf7-e215-46d6-aea1-f2d7f5bf24e0)
 
 
 **WaveForm**:
+
 **1)CLC:**
+
 ![image](https://github.com/user-attachments/assets/b5c0470e-1775-4526-8fc8-6431ceef1915)
 
 **2)RESET**
+
 ![image](https://github.com/user-attachments/assets/aa92e4cf-dc59-4b6a-9a63-948128052ac0)
 
 **3)increment of output from 0(h00) to 45(h2d)**:
+
 ![image](https://github.com/user-attachments/assets/f64dc1fb-f222-4161-9e35-eec30cb4a718)
 
-**4)VIZ**
+**4)VIZ**:
+
 ![image](https://github.com/user-attachments/assets/b98a7c15-91ce-4c85-b3f0-74a6c83b6fb7)
 
 
