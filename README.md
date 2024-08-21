@@ -813,20 +813,108 @@ $cnt[31:0] = $reset ? 0 : (>>1$cnt + 1);
 ```
 
 ![image](https://github.com/user-attachments/assets/b98d65db-d374-42ad-a783-ce6bc55dc519)
- 
-            
-            
-
-
-
-
-
-
-
-
-
 
  </details>
+ 
+ <details><summary><strong>Day4</strong></summary>
+	 
+  ## RISC-V CPU Micro-architecture:
+  - This section contains the TVL implementation of 3 stages : Fetch, Decode, Execute
+  - The below figure shows block diagram of our CPU.
+    ![image](https://github.com/user-attachments/assets/ea49e898-8d50-44be-a99d-a72f7323ccf6)
 
+  - We implement every block in the above diagram in TVL and show the resultant wave forms.
+    ![image](https://github.com/user-attachments/assets/20aec983-a05f-4075-ba39-bda56f2af35c)
+
+    **1) Program Counter**:
+    
+   	- In RISC-V, the Program Counter (PC) is a register that holds the address of the next instruction to be executed. After each instruction fetch, the PC is automatically incremented to point to the 		subsequent instruction. The PC can also be modified by control flow instructions like branches or jumps, directing the flow of program execution.
+    	- The diagram below shows the diagram of PC in detail.
+   	![image](https://github.com/user-attachments/assets/2d717fa8-264b-4621-8d16-87db6f64b17d)
+    	- Given beloww is the TVL code for PC.
+      	```c
+      	$pc[31:0] = >>1$reset ? 0 : ( >>1$pc + 31'h4 );
+      	```
+       
+      ![image](https://github.com/user-attachments/assets/65ca803d-4230-40a7-8dbd-41bf08cc8f17)
+
+
+
+    **2) Instruction Memory**:
+    
+    - Given below is the low level diagram for the Instruction Memory.
+    
+	 ![image](https://github.com/user-attachments/assets/1179c300-15da-4021-a2d5-5f573ca72fb0)
+	- The PC output is given to instruction memory which fetches the untruction which has to executed.
+    	- The instruction memory gives the 32 bit instruction which needs to be exectuted to the next module whicle PC increments by 4.
+        - The code for instruction memory is given below.
+        ```c
+        $imem_rd_en = >>1$reset ? 0 : 1;
+        $imem_rd_addr[31:0] = $pc[M4_IMEM_INDEX_CNT+1:2];
+        $instr[31:0] = $imem_rd_data[31:0];
+        ```
+   	- Given below is the waveform for PC and instruction memory.
+
+     ![image](https://github.com/user-attachments/assets/151476c8-5597-4412-813d-89c3c3f4297d)
+
+
+    **3) Decoding the instruction**:
+
+     **Decode Logic**:
+     - Given below is the different instruction types which determines the type(I,R,S,B,J,U).
+   	 ![image](https://github.com/user-attachments/assets/d56401fc-2bed-48e8-a5a6-d1d3cef981b1)
+
+	 ![image](https://github.com/user-attachments/assets/d7a7d95d-97e3-470f-8728-0fe011a19b6d)
+
+     **Immediate Logic**:
+
+     - The figure below shows the immediate value of different instructions.
+    
+	![image](https://github.com/user-attachments/assets/e51fd527-0b69-401d-95a7-02e8ee143067)
+     
+     - Coded the instruction baseed on all six types of RISCV instruction set.
+       
+       ![image](https://github.com/user-attachments/assets/c552ed06-1999-4bf2-8801-23b18fea2a27)
+
+    - The waveforms for the same are shown
+      ![image](https://github.com/user-attachments/assets/d2335d14-2935-4947-b297-bc7b4d38fbd1)
+
+
+      **Decode Logic For Other Fields**:
+      
+      - Functions like rs1,rs2,func3,func7 should also be decoded
+        
+        ```c
+                 $rs2_valid = $is_r_instr || $is_s_instr || $is_b_instr;
+         ?$rs2_valid
+            $rs2[4:0] = $instr[24:20];
+            
+         $rs1_valid = $is_r_instr || $is_i_instr || $is_s_instr || $is_b_instr;
+         ?$rs1_valid
+            $rs1[4:0] = $instr[19:15];
+         
+         $funct3_valid = $is_r_instr || $is_i_instr || $is_s_instr || $is_b_instr;
+         ?$funct3_valid
+            $funct3[2:0] = $instr[14:12];
+            
+         $funct7_valid = $is_r_instr ;
+         ?$funct7_valid
+            $funct7[6:0] = $instr[31:25];
+            
+         $rd_valid = $is_r_instr || $is_i_instr || $is_u_instr || $is_j_instr;
+         ?$rd_valid
+            $rd[4:0] = $instr[11:7];
+
+         $opcode[6:0] = $instr[6:0];
+        ```
+      - The waveform for the above is shown in the picture
+
+        ![image](https://github.com/user-attachments/assets/b4af4364-65b4-42d2-8dd5-b9c66e996da5)
+
+
+
+      
+      
+ </details>
 
 </details>
