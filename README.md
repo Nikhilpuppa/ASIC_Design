@@ -578,10 +578,181 @@ spike pk vehicle_dashboard.o
 
 <details><summary><strong>Lab6</strong></summary>
 	
-	<details><summary><strong>Day3</strong></summary>
- 		## Basic Combinational Circuits in Makerchip :
-   				
- 	</details>
+<details><summary><strong>Day3</strong></summary>
+	
+ ## Understanding Simple Combinational Circuit :
+ 
+ - These are the basic gates used in combinational circuit.
+ ![image](https://github.com/user-attachments/assets/4637de9e-4b64-4551-acf7-3690e3250874)
+
+ - Here are some of the basic designs of some of the combinational ciruits:
+
+ 
+ 1) **Inverter**
+ ```c
+$out = ! $in;
+```
+
+![inverter](https://github.com/user-attachments/assets/8a4224d7-50fe-4261-a1d8-2b8d9d646a35)
+
+ 2) **Addition on arrays**
+ ```c
+$out[4:0] = $in1[3:0] + $in2[3:0];
+```
+
+![adder](https://github.com/user-attachments/assets/22698417-c934-42b6-8c1a-cd2435543bf6)
+
+ 3) **And Gate(2 input)**
+ ```c
+$out = $in1 && $in2;
+```
+
+![ans](https://github.com/user-attachments/assets/ba5aaafe-4994-4269-b98e-92cc141d639d)
+
+ 4) **Or Gate(2 input)**
+ ```c
+$out = $in1||  $in2;
+```
+![or](https://github.com/user-attachments/assets/fe2cc74a-77b3-415a-9036-2d863ed372b8)
+
+
+ 5) **xor Gate(2 input)**
+ ```c
+$out = $in1 ^  $in2;
+```
+![xor](https://github.com/user-attachments/assets/e942922b-faea-4523-8ca7-272ccaa6d3b7)
+
+
+ 6) **2:1 Mux**
+ ```c
+$out[11:0] = $sel ? $in1[11:0] : $in0[11:0];
+```
+
+![mux21](https://github.com/user-attachments/assets/8fa6d6e8-f7ef-40a4-b45d-07b8e376304b)
+
+
+ 7) **Combinational Calci**
+
+- This calculator does 4 basic operations which are addition, subtraction,divison and multiplication.
+- The input to the calculator is random 3 bit values and the operation is selected by the select line of the mux.
+ ```c
+$val1[31:0] = $rand1[3:0];
+$val2[31:0] = $rand2[3:0];
+
+$sum[31:0]  = $val1[31:0] + $val2[31:0];
+$diff[31:0] = $val1[31:0] - $val2[31:0];
+$prod[31:0] = $val1[31:0] * $val2[31:0];
+$quot[31:0] = $val1[31:0] / $val2[31:0];
+
+$out[31:0] = ($sel[1:0] == 2'b00) ? $sum[31:0]:
+             ($sel[1:0] == 2'b01) ? $diff[31:0]:
+             ($sel[1:0] == 2'b10) ? $prod[31:0]:
+                                    $quot[31:0];
+```
+
+- If select line is 00 then additon is done
+- If select line is 01 then subtraction is done
+- If select line is 10 then multiplication is done
+- If select line is 11 then division is done
+
+- Later in the editoral we see that this calaculator can be implemented by sequenctial logic too.
+
+![calci](https://github.com/user-attachments/assets/e6afbcf5-7bbb-44b7-8234-93f10ae8cb31)
+
+
+## Understanding Sequential Circuit :
+
+- A sequential circuit is a type of digital circuit that incorporates memory components to store data, enabling it to produce outputs based on both the current inputs and the circuit's past states. Unlike combinational circuits, which rely solely on present inputs, sequential circuits utilize feedback loops and storage elements like flip-flops or registers to maintain their internal state. This internal state, combined with current inputs, determines the circuit's behavior, allowing it to perform tasks that require tracking input history, such as counting, data storage, or event sequencing.
+
+1) **Fibbonacci Series**:
+
+``` c
+$num[31:0] = $reset ? 1 : (>>1$num + >>2$num);
+```
+- The below image shows the circuit consisting of d flip flop
+![image](https://github.com/user-attachments/assets/ad4f9937-e543-499e-bc20-aeeffaebdfe9)
+
+
+![fib](https://github.com/user-attachments/assets/455b313c-a04b-43d5-bb94-e8ee0f9a258d)
+
+
+2) **Counter Series**:
+
+```c
+$cnt[31:0] = $reset ? 0 : (>>1$cnt + 1);
+```
+
+- The below image shows the circuit consisting of d flip flop
+
+ ![image](https://github.com/user-attachments/assets/95540797-cb40-433e-bd88-0a7d78b8737a)
+
+
+![cnt](https://github.com/user-attachments/assets/9777d78f-2421-4e76-b3cf-6ecd5d8a98d3)
+
+
+3) **Sequential Calculator:**
+- This circuit behaves the same as the rpevious cominitoral circuit but the result will the input to the circuit .
+-  Upon resest the result sets to zero.
+-  
+```c
+
+   $val1[31:0] = >>2$out;
+   $val2[31:0] = $rand2[3:0];
+
+   $sum[31:0]  = $val1[31:0] + $val2[31:0];
+   $diff[31:0] = $val1[31:0] - $val2[31:0];
+   $prod[31:0] = $val1[31:0] * $val2[31:0];
+   $quot[31:0] = $val1[31:0] / $val2[31:0];
+
+   $nxt[31:0] = ($sel[1:0] == 2'b00) ? $sum[31:0]:
+                ($sel[1:0] == 2'b01) ? $diff[31:0]:
+                ($sel[1:0] == 2'b10) ? $prod[31:0]:
+                                       $quot[31:0];
+   
+   $out[31:0] = $reset ? 32'h0 : $nxt;
+```
+
+- The generated block diagram and waveforms are as shown:
+
+![image](https://github.com/user-attachments/assets/fad11b10-4f92-4cc0-85e5-5882ff17e477)
+
+![calci_sseq](https://github.com/user-attachments/assets/793f447d-bff7-42c2-bcb7-a2b5fc8ef928)
+
+
+## Pipelined Logic:
+ - In Transaction-Level Verilog (TL-Verilog), pipelined logic is effectively modeled using pipeline constructs that represent the flow of data through various design stages, each aligned with a clock cycle. This method simplifies the representation of sequential logic by automatically managing state propagation, allowing for clear and concise descriptions of complex, multi-stage operations. As a result, it enhances both the clarity and maintainability of the design.
+
+1)**Designing for the given modele**:
+   
+- The objective is to recreate the design using TVL code. The module is shown in the diagram.
+![image](https://github.com/user-attachments/assets/4c93ac77-6a26-4047-87cf-903eae14ea94)
+ - Code for the following module is given below
+   
+ ```c
+|pipe
+  @1
+    $err1 = $bad_input || $illegal_op;
+  @3
+    $err2 = $over_flow || $err1;
+  @6
+    $err3 = $div_by_zero || $err2;
+```
+
+- The results can be verified by seeing the below waveforms.
+  ![failed](https://github.com/user-attachments/assets/e30db172-25e2-4b5e-8ef7-eebe0988f242)
+
+2)**Pipelined Calculator**:
+
+
+
+
+
+
+
+
+
+
+ </details>
 
 
 </details>
