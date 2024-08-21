@@ -999,6 +999,10 @@ $cnt[31:0] = $reset ? 0 : (>>1$cnt + 1);
 
  ![image](https://github.com/user-attachments/assets/45a1f671-9342-4f18-ac81-cd9410b9314d)
 
+**Final Result showing addition from 1 to 9 0(h00) to 45(h2d)**:
+ ![image](https://github.com/user-attachments/assets/b8ed872c-3710-44ec-a106-bf33889dfe6b)
+
+
  </details>
  
 <details><summary><strong>Day5</strong></summary>
