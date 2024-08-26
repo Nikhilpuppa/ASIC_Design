@@ -1359,7 +1359,113 @@ $src2_value[31:0] = $rs2_bypass ? >>1$result[31:0] : $rf_rd_data2[31:0];
 
 
 
-
- 
 </details>
+</details>
+
+
+<details><summary><strong>Lab7</strong></summary>
+	
+## Comparision of RISC-V Pre-Synthesis Simulation outputs using Iverilog GTKwave and Makerchip
+
+- The RISC-V processor was designed using TL-Verilog in the Makerchip IDE. To implement it on an FPGA, it was converted to Verilog using the Sandpiper-SaaS compiler. Pre-synthesis simulations were then conducted using the GTKWave simulation.
+
+## Procedure:
+ 1) Execute the following commands to set up a development environment for working with simulation and synthesis tools, specifically for tasks involving Verilog and RISC-V.
+ ```c
+$ sudo apt install make python python3 python3-pip git iverilog gtkwave
+
+$ cd ~
+
+$ sudo apt-get install python3-venv
+
+$ python3 -m venv .venv
+
+$ source ~/.venv/bin/activate
+
+$ pip3 install pyyaml click sandpiper-saas
+```
+
+![image](https://github.com/user-attachments/assets/0872d51b-eea0-4116-853c-c2342c35d279)
+
+ 2)To install packages execite the following commands in virtual environment.
+ 
+ ```c
+$ sudo apt install make python python3 python3-pip git iverilog gtkwave docker.io
+
+$ sudo chmod 666 /var/run/docker.sock
+
+$ cd ~
+
+$ pip3 install pyyaml click sandpiper-saas
+```
+![image](https://github.com/user-attachments/assets/443acadf-632b-43f2-a730-7aa6e8de9e7e)
+
+3)Clone the repo in home directory and make a `pre_synth_sim` directory which contains the output.
+```c
+$ cd ~
+
+$ git clone https://github.com/manili/VSDBabySoC.git
+
+$ cd /home/vsduser/VSDBabySoC
+
+$ make pre_synth_sim
+```
+![image](https://github.com/user-attachments/assets/14b4ef65-d3d1-4d5d-b2e3-f5755c85662a)
+
+4)Replace the rvmyth.tlv file in the VSDBabySoC/src/module folder with your RISC-V design from the Makerchip .tlv file. Additionally, update the testbench to align with your Makerchip code.
+
+5)To convert TLV code to verilog code use the below code.
+```c
+$ iverilog -o output/pre_synth_sim.out -DPRE_SYNTH_SIM src/module/testbench.v -I src/include -I src/module
+```
+![image](https://github.com/user-attachments/assets/a6a59183-627b-4647-923e-35a8d5686922)
+
+6)Compile and Run RISCV design
+```c
+$ iverilog -o output/pre_synth_sim.out -DPRE_SYNTH_SIM src/module/testbench.v -I src/include -I src/module
+```
+
+7)Result is stored in ./pre_synth_sim.out.
+![image](https://github.com/user-attachments/assets/1f345a78-ede1-4e47-a800-b7e3bc0edc30)
+
+8)To view the simulation run the3 folllowing command.
+```c
+$ gtkwave pre_synth_sim.vcd
+```
+
+**Pre-synthesis Simulation results**: Signals to plot are the following:
+
+ -clk_nik: This is the clock input to the RISC-V core.
+
+-reset: This is the input reset signal to the RISC-V core.
+
+-OUT[9:0]: Register 14 is output here.
+
+
+**GTKWAVE Wave Forms**:
+
+- clk_nik :
+![WhatsApp Image 2024-08-26 at 16 49 21_7c09e66e](https://github.com/user-attachments/assets/7cbb801d-38cb-40ae-9e2b-fbe854ab9947)
+
+- reset:
+![WhatsApp Image 2024-08-26 at 16 49 47_97660766](https://github.com/user-attachments/assets/78bbd0e6-2c11-434a-9bf4-f67d1c2583cd)
+
+- out[9:0]:
+
+
+
+**MAkerchip results**:
+
+- clk_nik :
+![image](https://github.com/user-attachments/assets/43cb6b3f-15a3-43c4-818a-0b8030ac9d95)
+
+
+- reset:
+![image](https://github.com/user-attachments/assets/97c120c4-19e1-49f2-a1c9-1f72f1223e28)
+
+
+- out[9:0]:
+![image](https://github.com/user-attachments/assets/eaa7ff3f-a9de-41c8-bb48-2893524988d2)
+
+
 </details>
