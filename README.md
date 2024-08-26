@@ -1451,10 +1451,11 @@ $ gtkwave pre_synth_sim.vcd
 ![WhatsApp Image 2024-08-26 at 16 49 47_97660766](https://github.com/user-attachments/assets/78bbd0e6-2c11-434a-9bf4-f67d1c2583cd)
 
 - out[9:0]:
+![WhatsApp Image 2024-08-26 at 17 06 00_22384aef](https://github.com/user-attachments/assets/489b750b-f0ab-4bcd-a7ce-4f777beb42d6)
 
 
 
-**MAkerchip results**:
+**Makerchip results**:
 
 - clk_nik :
 ![image](https://github.com/user-attachments/assets/43cb6b3f-15a3-43c4-818a-0b8030ac9d95)
