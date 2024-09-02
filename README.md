@@ -1470,3 +1470,60 @@ $ gtkwave pre_synth_sim.vcd
 
 
 </details>
+
+
+
+
+<details><summary><strong>Lab8</strong></summary>
+	
+## AIM:
+The task involves integrating and validating the functionality of a custom RISC-V processor (rvmyth) within the BabySoC platform. This will be done using a specific set of digital design and simulation tools to generate DAC and PPL waveforms for the RISC-V processor.
+
+## Phase Locked Loop (PLL):
+
+**Overview of PLL**: A Phase-Locked Loop (PLL) is an electronic control system designed to generate an output signal whose phase is precisely synchronized with the phase of an input signal. This synchronization allows the PLL to lock onto the frequency of the input signal.
+
+**Applications**: PLLs are widely used in telecommunications, radio, and computing. They are crucial for achieving precise signal synchronization, maintaining frequency stability, and generating accurate clocks for digital circuits.
+
+**Functionality and Benefits**: By adjusting its internal parameters, a PLL can stabilize and filter signals, ensuring reliable performance across various frequencies and applications. This capability makes it an essential tool for accurate signal processing and frequency management.
+
+## PROCEDURE:
+Use the following command to download files of BabySoc.
+```c
+git clone https://github.com/manili/VSDBabySoC.git
+```
+![image](https://github.com/user-attachments/assets/2125876e-3cb9-43d8-87ba-5e62b9fb758d)
+
+
+**Verilog Code**
+
+![image](https://github.com/user-attachments/assets/6d7e56d2-476c-46fb-a44f-f6088f248079)
+
+
+## SIMULATION:
+Functional simulation can be performed using the following command:
+```c
+cd BabySoC_Simulation
+iverilog -o ./pre_synth_sim.out -DPRE_SYNTH_SIM src/module/testbench.v -I src/include -I src/module/
+./pre_synth_sim.out
+gtkwave pre_synth_sim.vcd
+
+```
+### WAVEFORMS:
+
+**clk**:
+
+![image](https://github.com/user-attachments/assets/a76840e3-1235-4f94-8547-a0bebc5a5845)
+
+**reset**:
+
+![image](https://github.com/user-attachments/assets/7d42a79f-bc6c-4e77-9ea8-4abeec31dd63)
+
+**output**:
+
+![image](https://github.com/user-attachments/assets/f15fbafe-41d8-4d52-a7f9-9a792778daf3)
+
+
+
+
+</details>
