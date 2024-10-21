@@ -1709,9 +1709,12 @@ write_verilog -noattr good_mux_netlist.v
 ![image](https://github.com/user-attachments/assets/9e30bc4d-ed9a-45aa-bc85-283e20a9cbdf)
 
 
-
-
-
 </details>
+
+<details><summary><strong>Day2</strong></summary>
+
+ 
+</details>
+
 
 </details>
