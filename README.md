@@ -2005,6 +2005,98 @@ show
 - Realization of Logic
 ![image](https://github.com/user-attachments/assets/b7094cf6-d302-4c1a-a6b8-8df666c9417a)
 
+
+## Optimizations :
+
+### MULT2: 
+
+![image](https://github.com/user-attachments/assets/a9c77e32-7c8e-48a5-a891-aef98b6899b0)
+
+
+#### Truth Table :
+
+![image](https://github.com/user-attachments/assets/59a9487c-b290-49ed-85f8-1f62f75be7e0)
+
+We can observe that multiplying a number by 2 does not require additional hardware; it simply involves appending zeroes to the least significant bits (LSBs). The remaining bits remain the same as the input bits. This can be achieved by grounding the LSBs and correctly wiring the inputs to the outputs.
+
+
+#### Statistics 
+
+```c
+yosys
+
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+read_verilog mult_2.v
+
+synth -top mul2
+
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+show 
+
+write_verilog -noattr mul_2_net.v
+
+!vim mult_2_net.v
+```
+
+![image](https://github.com/user-attachments/assets/785317c2-eaa0-48be-a7d8-ac1ab1eb7a82)
+
+
+-Realization of Logic :
+
+![image](https://github.com/user-attachments/assets/e844a2c7-bd9f-45bb-9ec8-40cba38430c1)
+
+-NetList:
+
+![image](https://github.com/user-attachments/assets/c31101b6-a8ec-4b00-8e6d-930417b8fa9f)
+
+
+### MULT8: 
+![image](https://github.com/user-attachments/assets/082df5dd-9d09-43a9-91f3-ade33f7a9970)
+
+#### LOGIC Bhevaiour:
+![image](https://github.com/user-attachments/assets/9ee08f83-5cbf-43de-95a1-ae3c6ca2f05f)
+
+
+
+#### Statistics 
+
+
+```c
+yosys
+
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+read_verilog mult_8.v
+
+synth -top mult8
+
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+show
+
+write_verilog -noattr mult_8_net.v
+!vim mult_8_net.v
+```
+
+![image](https://github.com/user-attachments/assets/a25df668-a115-4963-87dc-31577cb13018)
+
+
+-Realization of Logic :
+
+![image](https://github.com/user-attachments/assets/7e7be7fe-e8c0-401d-9a7c-4dfd25703499)
+
+
+-NetList:
+
+![image](https://github.com/user-attachments/assets/e80ba410-45d0-41d4-9189-359ff0b449e7)
+
+
+
+
 </details>
 
 
