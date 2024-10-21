@@ -1928,12 +1928,82 @@ gtkwave tb_dff_asyncres.vcd
 ![image](https://github.com/user-attachments/assets/acc5c8fe-4b3f-407f-84a7-f270dc7db360)
 
 
+## FLIP FLOP SYNTHESIS
 
 
+#### Statistics of D FLipflop with Asynchronous Reset
+
+```c
+yosys
+
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+read_verilog dff_asyncres.v
+
+synth -top dff_asyncres
+
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+show
+
+```
+
+![image](https://github.com/user-attachments/assets/f1a04eb5-4b09-4392-81a3-4f69c9ca16db)
+
+![image](https://github.com/user-attachments/assets/69653487-0af2-4e65-b6e1-9d58aebb85a0)
 
 
+- Realization of Logic
+![image](https://github.com/user-attachments/assets/c842b631-4e94-4dea-8d55-632b0def6561)
+
+- We designed a flip-flop with an active high reset, but the flip-flop is actually functioning with an active low reset. Consequently, the tool inserted an inverter, resulting in `(!(!(reset)))`, which effectively simplifies to just `reset`. Ultimately, we end up with a flip-flop that has an active high reset.
+
+#### Statistics of D FLipflop with Asynchronous set
+
+```c
+yosys
+
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+read_verilog dff_async_set.v
+
+synth -top dff_async_set
+
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+show
+
+```
+- Realization of Logic
+![image](https://github.com/user-attachments/assets/6f0d5dee-023c-47c2-b23d-ee2b7b3949f4)
+
+- We designed a flip-flop with an active high set, but the flip-flop is actually operating with an active low set. As a result, the tool inserted an inverter, leading to `(!(!(set)))`, which simplifies to just `set`. Consequently, we end up with a flip-flop that has an active high set.
 
 
+#### Statistics of D FLipflop with synchronous reset
+
+```c
+yosys
+
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+read_verilog dff_syncres.v
+
+synth -top dff_syncres
+
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+show
+
+```
+- Realization of Logic
+![image](https://github.com/user-attachments/assets/b7094cf6-d302-4c1a-a6b8-8df666c9417a)
 
 </details>
 
