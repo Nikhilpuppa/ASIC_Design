@@ -2849,7 +2849,7 @@ gtkwave tb_blocking_caveat.vcd
 
 
 
-
+In this case there is a synthesis and simulation mismatch. While performing synthesis yosys has corrected the latch error.
 
 
 </details>
