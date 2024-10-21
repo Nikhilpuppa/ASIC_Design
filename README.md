@@ -1715,7 +1715,34 @@ write_verilog -noattr good_mux_netlist.v
 
 <details><summary><strong>Day2</strong></summary>
 
+ ## Introduction to timing labs
  
+- View the content in .lib file using the following commands.
+	
+```
+cd ASIC/sky130RTLDesignAndSynthesisWorkshop/lib/
+
+vim sky130_fd_sc_hd__tt_025C_1v80.lib
+```
+
+
+![image](https://github.com/user-attachments/assets/6eb59a5a-3244-4f38-a0ba-5c67a4ad4347)
+
+![image](https://github.com/user-attachments/assets/4da889f4-bc72-4ed6-9709-ecf44d473522)
+
+
+### Cell Library
+
+A **standard cell library** is a collection of characterized logic gates designed for implementing digital circuits. The **Liberty (.lib)** files contain parameters related to Process, Voltage, and Temperature (PVT) that can significantly influence circuit performance. Variations in manufacturing processes, changes in voltage levels, and fluctuations in temperature all contribute to the overall functionality of the circuit.
+
+
+![image](https://github.com/user-attachments/assets/55fab97d-4f59-4b93-9eb8-616454f65e2e)
+
+![image](https://github.com/user-attachments/assets/56660781-4b59-4b87-85b3-1596d722c3a7)
+
+![image](https://github.com/user-attachments/assets/b9a82d41-bd17-4fc5-9146-0c59fefa7610)
+
+
 </details>
 
 
