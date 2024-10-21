@@ -2323,6 +2323,331 @@ write_verilog -noattr multiple_module_opt2_net.v
 
 
 
+## Sequential Logic Optimizations:
+
+### Example 1:
+#### Code:
+![image](https://github.com/user-attachments/assets/375695d7-9a3d-48a6-b74b-f8cb5979d4c6)
+
+
+#### Simualtion:
+
+```c
+yosys
+
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+read_verilog dff_const1.v
+
+synth -top dff_const1
+
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+show
+
+write_verilog -noattr dff_const1_net.v
+
+!vim dff_const1_net.v
+```
+![image](https://github.com/user-attachments/assets/056f0ee9-494e-4e74-9c89-12757de9308c)
+
+![image](https://github.com/user-attachments/assets/2e56cd2e-eefc-4144-bcbf-4c306c50a0e1)
+
+#### GTK Wave Output:
+
+```c
+iverilog dff_const1.v tb_dff_const1.v
+
+./a.out
+
+gtkwave tb_dff_const1.vcd
+```
+![image](https://github.com/user-attachments/assets/d289e977-1dfa-4fee-8b79-ad7d06d93fd6)
+
+
+### Example 2:
+#### Code:
+![image](https://github.com/user-attachments/assets/c4d39163-9f53-42f0-9c02-7720eb3dbf22)
+
+
+#### Simualtion:
+
+```c
+yosys
+
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+read_verilog dff_const2.v
+
+synth -top dff_const2
+
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+show
+
+write_verilog -noattr dff_const2_net.v
+
+!vim dff_const2_net.v
+```
+
+![image](https://github.com/user-attachments/assets/1fe738ec-1eee-469f-87d7-354154490195)
+
+
+![image](https://github.com/user-attachments/assets/21008055-d542-46bd-9ccf-8bc4fe2a461f)
+
+#### GTK Wave Output:
+
+```c
+iverilog dff_const2.v tb_dff_const2.v
+
+./a.out
+
+gtkwave tb_dff_const2.vcd
+```
+
+
+![image](https://github.com/user-attachments/assets/4b0f8491-2878-4007-853f-08371c7d1c5b)
+
+
+
+### Example 3:
+#### Code:
+
+![image](https://github.com/user-attachments/assets/f31ee24f-00ee-453b-bb52-c6bf58bd15c6)
+
+
+#### Simuations:
+
+```c
+yosys
+
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+read_verilog dff_const3.v
+
+synth -top dff_const3
+
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+show
+
+write_verilog -noattr dff_const3_net.v
+```
+
+
+![image](https://github.com/user-attachments/assets/9405d785-a9e0-4151-a216-fb6bfbe7bb68)
+
+
+![image](https://github.com/user-attachments/assets/3a0717d8-b3fe-47a3-98ac-b3480bb5aa5e)
+
+
+#### GTK Wave Output:
+
+```c
+iverilog dff_const3.v tb_dff_const3.v
+
+./a.out
+
+gtkwave tb_dff_const3.vcd
+```
+
+![image](https://github.com/user-attachments/assets/b325ccb2-a5b5-4fd3-95ff-573748d12647)
+
+
+
+### Example 4:
+#### Code:
+
+![image](https://github.com/user-attachments/assets/8f6bdea4-95d5-4fd2-adfd-cf911866f506)
+
+
+
+#### Simuations:
+
+```c
+yosys
+
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+read_verilog dff_const4.v
+
+synth -top dff_const4
+
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+show
+
+write_verilog -noattr dff_const4_net.v
+```
+
+![image](https://github.com/user-attachments/assets/54925845-d0b4-4536-ba1d-992a7b87690d)
+
+![image](https://github.com/user-attachments/assets/51158ab4-a4eb-4311-bc40-179e998b110d)
+
+
+
+#### GTK Wave Output:
+
+```c
+iverilog dff_const4.v tb_dff_const4.v
+
+./a.out
+
+gtkwave tb_dff_const4.vcd
+```
+
+![image](https://github.com/user-attachments/assets/63241039-025d-4da2-bdb2-e6ac83be8e69)
+
+
+
+### Example 5:
+#### Code:
+
+![image](https://github.com/user-attachments/assets/640c9cdb-e142-4681-803e-56e0ad4db17a)
+
+
+
+
+#### Simuations:
+
+```c
+yosys
+
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+read_verilog dff_const5.v
+
+synth -top dff_const5
+
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+show
+
+write_verilog -noattr dff_const5_net.v
+```
+![image](https://github.com/user-attachments/assets/077e4299-0401-4480-95bf-d0779dfd4b08)
+
+![image](https://github.com/user-attachments/assets/9b65bdb8-5bf5-48d2-a7cb-32ce5e2d6f64)
+
+
+
+
+#### GTK Wave Output:
+
+```c
+iverilog dff_const5.v tb_dff_const5.v
+
+./a.out
+
+gtkwave tb_dff_const5.vcd
+```
+![image](https://github.com/user-attachments/assets/15993fa4-e716-48b7-90ce-a1fb124feae3)
+
+
+
+## Sequential Logic Optimizations for unused outputs:
+
+### Example 1:
+#### Code:
+![image](https://github.com/user-attachments/assets/78766646-dc9f-420e-951f-b22a2e4fe74b)
+
+#### Synthesis:
+
+```c
+yosys
+
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+read_verilog counter_opt.v
+
+synth -top counter_opt
+
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+show
+
+write_verilog -noattr counter_opt_net.v
+```
+
+![image](https://github.com/user-attachments/assets/b7d9cce5-442a-4ff0-889d-6ffd2880b031)
+
+![image](https://github.com/user-attachments/assets/92136998-c7bc-4249-9fd1-16135f3aaf93)
+
+
+#### GTK Wave Output:
+
+```c
+iverilog counter_opt.v tb_counter_opt.v
+
+./a.out
+
+gtkwave tb_counter_opt.vcd
+```
+
+![image](https://github.com/user-attachments/assets/80cbc3be-fd16-4b30-befe-6f7c76f16bee)
+
+
+
+### Example 2:
+#### Code:
+![image](https://github.com/user-attachments/assets/5757e4bc-dcec-482d-a017-41f8b613d0a6)
+
+
+#### Synthesis:
+
+```c
+yosys
+
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+read_verilog counter_opt2.v
+
+synth -top counter_opt2
+
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+show
+
+write_verilog -noattr counter_opt_net.v
+```
+
+![image](https://github.com/user-attachments/assets/43160d4a-97b7-4aa2-a5ac-59b627f47818)
+
+
+![image](https://github.com/user-attachments/assets/9a77efb7-abd0-4873-8e7b-1cdeeefa785c)
+
+
+
+#### GTK Wave Output:
+
+```c
+iverilog counter_opt2.v tb_counter_opt.v
+
+./a.out
+
+gtkwave tb_counter_opt.vcd
+```
+
+![image](https://github.com/user-attachments/assets/f8ab9668-8699-456c-86b9-dcbdbdb4bcf2)
+
+
+
+
+
 </details>
 
 
