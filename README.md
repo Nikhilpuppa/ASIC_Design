@@ -1874,6 +1874,66 @@ show
   ![image](https://github.com/user-attachments/assets/42a4253f-1460-486a-987b-cef4b4690cdc)
 
 
+## Flop coding styles and optimization :
+
+Flip-flops play a crucial role in sequential logic within a circuit, and in this section, we examine the design and synthesis of different types of flip-flops. To prevent glitches in digital circuits, flip-flops are employed to store intermediate values. This approach guarantees that the inputs to the combinational circuit remain stable until the clock edge, thereby avoiding glitches and ensuring correct operation.
+
+
+### Asynchronous Reset/set:
+
+#### Verilog Code for Asynchronous Reset:
+![image](https://github.com/user-attachments/assets/966f1464-4b4e-477b-8f76-b3a98827db53)
+
+#### Verilog Code Asynchronous Set:
+![image](https://github.com/user-attachments/assets/52fc15f6-448c-409d-8d26-81182578ea9d)
+
+
+- In this design, the `always` block is activated by changes in the clock or reset signal. The circuit is responsive to the positive edge of the clock. When the reset or set signal transitions to low or high, the output on the `q` line changes accordingly. As a result, the behavior linked to the reset or set occurs immediately, without waiting for the positive edge of the clock.
+
+
+
+
+## Synchronous Reset:
+
+![image](https://github.com/user-attachments/assets/99aba429-be7f-482d-bbfc-db6cbe31f67d)
+
+
+## FLIPFLOP SIMULATION:
+
+```c
+iverilog dff_asyncres.v tb_dff_asyncres.v 
+
+ls
+
+./a.out
+
+gtkwave tb_dff_asyncres.vcd
+```
+
+![image](https://github.com/user-attachments/assets/375ac486-d178-4d04-92fe-8e3340e65857)
+
+
+#### gtk wave for ASYNCHRONOUS RESET:
+
+![image](https://github.com/user-attachments/assets/d8c3489e-7c3a-48b9-9e9d-4201414eb7ca)
+
+
+#### gtk wave for ASYNCHRONOUS SET:
+
+![image](https://github.com/user-attachments/assets/dabaa6cd-1ce8-49b9-aa0e-b0403fc7164f)
+
+
+#### gtk wave for SYNCHRONOUS RESET:
+
+![image](https://github.com/user-attachments/assets/acc5c8fe-4b3f-407f-84a7-f270dc7db360)
+
+
+
+
+
+
+
+
 
 </details>
 
