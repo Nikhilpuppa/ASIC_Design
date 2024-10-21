@@ -1524,6 +1524,194 @@ gtkwave pre_synth_sim.vcd
 ![image](https://github.com/user-attachments/assets/f15fbafe-41d8-4d52-a7f9-9a792778daf3)
 
 
+</details>
 
+<details><summary><strong>Lab9</strong></summary>
+
+<details><summary><strong>Day1</strong></summary>
+	
+## Introduction to Icarus Verilog (iverilog) : 
+
+In digital circuit design, **Register-Transfer Level (RTL)** is an abstraction used to model synchronous digital circuits. RTL describes the flow of data between hardware registers and the logic operations applied to these signals. This abstraction is expressed using **Hardware Description Language (HDL)**, such as Verilog, to create high-level models. These models are eventually transformed into lower-level representations and, finally, into the physical hardware design.
+
+### Simulator
+
+A simulator is a tool used to verify the circuit design. In this context, we use the **Icarus Verilog (iverilog)** tool for simulation. Simulation involves creating models that mimic the behavior of the target device (simulation models) and using test models (test benches) to validate the device's design. RTL design typically consists of one or more Verilog files that specify the functionality and requirements of the system.
+
+### Test Bench
+
+A **test bench** is a setup that delivers stimulus (test vectors) to the design, verifying its behavior and ensuring that it meets the required specifications.
+
+### Simulator
+
+The simulator monitors input signals for changes, and based on those changes, evaluates the corresponding output.
+
+![image](https://github.com/user-attachments/assets/7912ec0a-847e-4e38-92ef-0844eb31c1a0)
+
+The design may have one or more primary inputs and primary outputs, but the test bench does not.
+
+![image](https://github.com/user-attachments/assets/fb3cad13-a612-4684-bb85-9f503da438bb)
+
+## LABS:
+
+### Environmental setup : 
+ ```
+mkdir VLSI
+
+cd VLSI
+
+git clone https://github.com/kunalg123/vsdflow.git
+
+git clone https://github.com/kunalg123/sky130RTLDesignAndSynthesisWorkshop.git
+
+cd sky130RTLDesignAndSynthesisWorkshop
+```
+
+![image](https://github.com/user-attachments/assets/ce597b89-a967-429e-a6a2-5bc4a778cb9e)
+
+![image](https://github.com/user-attachments/assets/4aa76402-24bd-4f3b-96b3-d90e965cbf7f)
+
+### Simulation of 2:1 multiplexer rtl design
+ - Use the following commands to run a simple 2:1 mux
+```
+iverilog good_mux.v tb_good_mux.v
+
+./a.out
+
+gtkwave tb_good_mux.vcd
+
+```
+![image](https://github.com/user-attachments/assets/44631145-17fe-4958-a240-e64707759faf)
+
+![image](https://github.com/user-attachments/assets/b33cfc44-bd9a-4df4-bd6e-5e69c27cbe08)
+
+![image](https://github.com/user-attachments/assets/8e30de81-317b-4966-b53d-a451ed2c7aa9)
+
+ - Use the following commands to access the contents in good_mux file
+
+```
+ vim tb_good_mux.v -o good_mux.v
+```
+![image](https://github.com/user-attachments/assets/10f42970-e496-46d1-94cb-1d781c657f63)
+
+![image](https://github.com/user-attachments/assets/f9aa4240-60e5-40af-9bd2-9847907efd4a)
+
+## Introduction to Yosys & Logic Synthesis:
+
+- A synthesizer is a tool used to convert RTL designs into a netlist, and in this case, we are using the Yosys synthesizer.
+
+![image](https://github.com/user-attachments/assets/e2f75528-4e0b-48cd-84c6-d67cf1607f06)
+
+![image](https://github.com/user-attachments/assets/4ba80cb9-ae7e-4010-aafc-5dc35d5bd518)
+
+- The set of primary inputs and primary outputs remains unchanged between the RTL design and synthesis, allowing us to use the same testbench for both.
+
+### Logic Synthesis:
+
+## RTL Design
+
+The **Register-Transfer Level (RTL) design** is a behavioral representation written in HDL (Hardware Description Language) to define the functionality based on the required specifications.
+
+## Synthesis
+
+**Synthesis** is the process of translating the RTL design into a gate-level representation. During this step, the design is transformed into logic gates, and the necessary connections are established. The output of this process is a file known as a **netlist**.
+
+## Liberty Files (.lib)
+
+The **Liberty (.lib) file** is a collection of logical modules that includes basic logic gates such as AND, OR, and NOT. These gates are available in various configurations, including 2-input, 3-input, and 4-input versions. Additionally, the library provides multiple variants of each gate, ranging from slow to medium to fast.
+
+- **Fast cells** are typically used to meet high-performance requirements but come at the cost of increased area and power consumption, and they may introduce hold time violations.
+- **Slower cells** help to address hold time issues but, if overused, can negatively impact overall performance.
+
+Optimal cell selection during synthesis is based on specific constraints that aim to balance area, power, and timing requirements.
+
+
+![image](https://github.com/user-attachments/assets/1953f822-6848-4752-8a4c-f42a8ec0bbad)
+
+## Faster vs. Slower Cells
+
+### Impact of Cell Delay
+
+The **cell delay** in digital logic circuits is largely influenced by the circuit’s load, typically represented by capacitance. Faster charging or discharging of this capacitance results in reduced cell delay.
+
+### Wider Transistors for Faster Cells
+
+To decrease cell delay, **wider transistors** are used as they can supply more current, enabling quicker charging or discharging of the capacitance. While this reduces the delay, it also increases **power consumption** and the **area** required for the circuit.
+
+### Narrower Transistors for Slower Cells
+
+In contrast, **narrower transistors** consume less area and power, but this comes at the cost of higher cell delay due to the slower charging/discharging process.
+
+### Trade-off in Design
+
+Achieving a low cell delay in a design requires balancing **area, power,** and **performance**. Faster cells improve performance but demand more area and power, while slower cells are more power-efficient and compact but can degrade the overall speed.
+
+
+![image](https://github.com/user-attachments/assets/352d0677-b505-4e70-ae7c-b1c9c2033789)
+
+
+### Ysoys Flow:
+
+- Starting yosys.
+
+```
+yosys
+```
+![image](https://github.com/user-attachments/assets/4a877815-b086-4bec-9a40-77400938e4a1)
+
+
+
+- Loading sky130 standard library
+```
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+```
+![image](https://github.com/user-attachments/assets/590b7ec1-3196-437f-ae36-f4a9020097c3)
+
+
+
+- Reading the design files
+```
+read_verilog good_mux.v
+```
+![image](https://github.com/user-attachments/assets/e01be841-67f3-48c9-ae9f-728a1417b11a)
+
+
+
+- Synthesizing the top level module
+```
+synth -top good_mux
+```
+![image](https://github.com/user-attachments/assets/3ec9b4a2-77b5-4a22-83e6-522b4960ee21)
+
+
+- Mapping to the standard library
+```
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+```
+![image](https://github.com/user-attachments/assets/84da485a-6c61-43c0-8b3c-2a76183e8de7)
+
+
+
+- To view the result as a graphich use the show command.
+```
+show
+```
+![image](https://github.com/user-attachments/assets/2dba7cfd-3854-4583-89bd-f750a1ff2aa4)
+
+
+
+
+- To save the resulting netlist to a file, use the `write_verilog` command. This will generate the netlist and write it to a file in the current directory.
+```
+write_verilog -noattr good_mux_netlist.v
+```
+
+![image](https://github.com/user-attachments/assets/9e30bc4d-ed9a-45aa-bc85-283e20a9cbdf)
+
+
+
+
+
+</details>
 
 </details>
