@@ -1696,7 +1696,8 @@ abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
 ```
 show
 ```
-![image](https://github.com/user-attachments/assets/2dba7cfd-3854-4583-89bd-f750a1ff2aa4)
+![Uploading image.png…]()
+
 
 
 
