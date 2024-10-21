@@ -2646,12 +2646,158 @@ gtkwave tb_counter_opt.vcd
 
 
 
+</details>
+
+<details><summary><strong>Day4</strong></summary>
+	
+## Introduction to GLS and Synthesis-Simulation mismatch
+### Gate Level Simulation (GLS)
+- **Purpose:** Verifies the synthesized netlist, ensuring logical accuracy and proper timing behavior.
+- **Process:** 
+  - Uses a testbench to simulate the netlist, a lower-level design representation.
+  - Compares simulation outputs with expected results to confirm correctness.
+- **Goal:** Ensure that the synthesis process hasn't introduced errors and that the design meets performance requirements.
+
+### Key Considerations:
+1. **Sensitivity Lists:**
+   - Critical for ensuring correct circuit behavior.
+   - An incomplete sensitivity list can lead to unintended latches.
+   
+2. **Blocking and Non-blocking Assignments:**
+   - **Blocking assignments** (`=`) and **non-blocking assignments** (`<=`) behave differently in `always` blocks.
+   - Improper use of blocking assignments can unintentionally create latches, causing mismatches between synthesis and simulation.
+
+### Conclusion:
+- To avoid issues, carefully review circuit behavior.
+- Ensure the sensitivity list and assignments align with the intended functionality.
+
+![image](https://github.com/user-attachments/assets/959fe922-9ca4-4392-b3d6-ab5b9efd4372)
+
+
+### Example 1
+
+#### Code:
+![image](https://github.com/user-attachments/assets/7b48beef-e3fe-42ea-a2c1-80860f8b6091)
+
+
+#### Simulation:
+
+```c
+yosys
+
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+read_verilog ternary_operator_mux.v
+
+synth -top ternary_operator_mux
+
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+show
+
+write_verilog -noattr ternary_operator_mux_net.v
+
+
+```
+
+![image](https://github.com/user-attachments/assets/ecb7601a-8622-459c-a8d9-118f896c836e)
+
+![image](https://github.com/user-attachments/assets/acbb2f20-270c-4d60-a839-ac8b1786a8b5)
+
+
+#### GTK Wave:
+
+```c
+iverilog ternary_operator_mux.v tb_ternary_operator_mux.v
+
+./a.out
+
+gtkwave tb_ternary_operator_mux.vcd
+```
+
+![image](https://github.com/user-attachments/assets/6156df8b-f5b3-41a3-87ca-a1d018038a0b)
+
+
+#### GLS:
+
+```C
+iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v ternary_operator_mux_net.v tb_ternary_operator_mux.v
+
+./a.out
+
+gtkwave tb_ternary_operator_mux.vcd
+```
+
+
+![image](https://github.com/user-attachments/assets/e7213e5a-80a8-44d2-8329-a49fe2fb3821)
+
+
+### Example 2
+
+#### Code:
+![image](https://github.com/user-attachments/assets/436c2089-88f7-47f4-87a1-d7b43a3bdb09)
+
+
+
+#### Simulation:
+
+```c
+yosys
+
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+read_verilog bad_mux.v
+
+synth -top bad_mux
+
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+show
+
+write_verilog -noattr bad_mux_net.v
+
+
+
+```
+![image](https://github.com/user-attachments/assets/4c943a0d-3d98-449d-aa44-c9aa53ef06e2)
+
+![image](https://github.com/user-attachments/assets/321938db-5fb1-4e3f-8282-ca6348710f01)
+
+
+
+#### GTK Wave:
+
+```c
+iverilog bad_mux.v tb_bad_mux.v
+
+./a.out
+
+gtkwave tb_bad_mux.vcd
+```
+
+![image](https://github.com/user-attachments/assets/5f437f5a-a258-410f-9e8a-4b7fc14be6ca)
+
+
+
+#### GLS:
+
+```C
+iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v bad_mux_net.v tb_bad_mux.v
+
+./a.out
+
+gtkwave tb_bad_mux.vcd
+```
+
+
+![image](https://github.com/user-attachments/assets/506b3621-7a14-4b85-813f-bcd506f000b9)
+
+
+
+
+
 
 
 </details>
-
-
-</details>
-
 
 </details>
