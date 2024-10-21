@@ -2094,7 +2094,236 @@ write_verilog -noattr mult_8_net.v
 
 ![image](https://github.com/user-attachments/assets/e80ba410-45d0-41d4-9189-359ff0b449e7)
 
+</details>
 
+
+<details><summary><strong>Day3</strong></summary>
+	
+## Introduction to Combinational Logic Optimization and sequential Optimization
+
+There are two types of optimizations: combinational and sequential optimizations. These optimizations are performed to create designs that are efficient in terms of area, power, and performance.
+
+## Combinational Optimization
+
+The techniques employed include:
+
+- **Constant Propagation (Direct Optimization)**
+- **Boolean Logic Optimization** (using K-Map or Quine-McCluskey method)
+
+### Constant Propagation
+
+Consider the circuit shown below:
+
+![image](https://github.com/user-attachments/assets/4c60328f-06b4-4c2a-b746-77b92ff5be1a)
+
+The top circuit utilizes 6 transistors (3 NMOS and 3 PMOS), whereas the bottom circuit uses only 2 transistors (1 NMOS and 1 PMOS) when input A is set to zero, effectively converting the logic into an inverter.
+
+### Boolean Logic Optimization
+
+Consider the following Verilog code:
+
+```
+assign y = a ? (b ? c : (c ? a : 0)) : (!c);
+```
+
+![image](https://github.com/user-attachments/assets/0de784cd-0cff-4783-bb88-4efc10245a36)
+
+![image](https://github.com/user-attachments/assets/40b28eb2-71b5-40fb-917c-2079b0825ef3)
+
+### Example 1:
+
+#### Code:
+![image](https://github.com/user-attachments/assets/7fce08f8-87b4-46c7-a6f0-efc8bda0c46d)
+
+#### Simulation:
+
+
+```c
+yosys
+
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+read_verilog opt_check.v
+
+synth -top opt_check
+
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+show
+
+write_verilog -noattr opt_check_net.v
+
+!vim opt_check_net.v
+```
+
+![image](https://github.com/user-attachments/assets/152cd679-a189-401d-8cf4-2966624a5a6f)
+![image](https://github.com/user-attachments/assets/fcf7fdf6-319b-43a8-bdf5-a2a9bf2bcb3a)
+
+
+### Example 2:
+
+##### Code:
+![image](https://github.com/user-attachments/assets/c3200db0-ab77-4b85-af9f-a16436aa65cf)
+
+#### Simulation:
+```
+yosys
+
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+read_verilog opt_check2.v
+
+synth -top opt_check2
+
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+show
+
+write_verilog -noattr opt_check2_net.v
+
+!vim opt_check2_net.v
+```
+
+![image](https://github.com/user-attachments/assets/14e12c28-2bdb-420e-9df5-89e577b42e4f)
+
+![image](https://github.com/user-attachments/assets/8074197d-d3c2-4a17-9513-039f9c702040)
+
+
+
+
+### Example 3:
+#### Code:
+![image](https://github.com/user-attachments/assets/5e7245bd-de0d-4e8c-9e78-1c74fafdb3eb)
+
+#### Simulation:
+```
+yosys
+
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+read_verilog opt_check3.v
+
+synth -top opt_check3
+
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+show
+
+write_verilog -noattr opt_check3_net.v
+
+!vim opt_check3_net.v
+```
+
+![image](https://github.com/user-attachments/assets/83027638-563a-4bef-85b4-dd0d1ac1f2b7)
+
+![image](https://github.com/user-attachments/assets/a0d62911-fc84-43b4-b294-5c79eeb7cd09)
+
+
+
+### Example 4:
+#### Code:
+![image](https://github.com/user-attachments/assets/96ded852-8249-455b-89b0-74beb4415051)
+
+#### Simulation:
+```c
+yosys
+
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+read_verilog opt_check4.v
+
+synth -top opt_check4
+
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+show
+
+write_verilog -noattr opt_check4_net.v
+
+!vim opt_check4_net.v
+````
+
+![image](https://github.com/user-attachments/assets/0cafde7c-7649-48cf-aa1f-e0f3108623f3)
+
+![image](https://github.com/user-attachments/assets/708323e6-8713-4f87-a116-f1463d096a58)
+
+
+### Example 5:
+#### Code:
+![image](https://github.com/user-attachments/assets/a6c9da23-50a0-400b-8c4f-904ec988523e)
+
+#### Synthesis
+
+```c
+yosys
+
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+read_verilog multiple_module_opt.v
+
+synth -top multiple_module_opt
+
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+flatten
+
+show
+
+write_verilog -noattr multiple_module_opt_net.v
+
+!vim multiple_module_opt_net.v
+````
+
+![image](https://github.com/user-attachments/assets/774b8041-82cb-4477-8c37-44f305696f6b)
+
+![image](https://github.com/user-attachments/assets/243a7600-f20f-4d25-9289-b0312bcf0174)
+
+
+### Example 6
+#### Code:
+![image](https://github.com/user-attachments/assets/1d8779ea-bea6-4ecd-9c1c-46f269a427f4)
+
+#### Synthesis:
+
+```c
+yosys
+
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+read_verilog multiple_module_opt2.v
+
+synth -top multiple_module_opt2
+
+dfflibmap -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+flatten
+
+show
+
+write_verilog -noattr multiple_module_opt2_net.v
+
+!vim multiple_module_opt_net2.v
+```
+
+![image](https://github.com/user-attachments/assets/5a3c2c2e-83be-4556-8d05-c31defae62c0)
+
+![image](https://github.com/user-attachments/assets/4564662d-de7f-45d2-89b4-b906fb33097d)
+
+
+
+</details>
 
 
 </details>
