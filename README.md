@@ -1749,7 +1749,6 @@ We can observe that:
 
 ### Hierarchial synthesis vs Flat synthesis
 
-## Hierarchical vs. Flat Synthesis
 
 **Hierarchical synthesis** involves decomposing a complex design into multiple sub-modules, each synthesized separately to create gate-level netlists before being integrated. This method improves organization, facilitates module reuse, and allows for incremental design changes without affecting the entire system.
 
@@ -1849,8 +1848,30 @@ write_verilog -noattr multiple_modules_flat.v
 ![image](https://github.com/user-attachments/assets/47cc71d1-1d27-4ddc-be48-5fc3f8d97b75)
 
 
-  
+### Sub Module Level Synthesis :
 
+This approach is favored when multiple instances of the same module are utilized. The synthesis is performed once and then replicated multiple times, with the various instances of the module integrated into the top module. This method is particularly beneficial when employing a divide-and-conquer algorithm.
+
+```c
+yosys
+
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+read_verilog multiple_modules.v
+
+synth -top sub_module1
+
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+show
+```
+
+![image](https://github.com/user-attachments/assets/f5b4e411-cb98-4f12-bf92-252174b6d445)
+
+
+- Realization of the Logic
+
+  ![image](https://github.com/user-attachments/assets/42a4253f-1460-486a-987b-cef4b4690cdc)
 
 
 
