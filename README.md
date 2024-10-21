@@ -1725,7 +1725,6 @@ cd ASIC/sky130RTLDesignAndSynthesisWorkshop/lib/
 vim sky130_fd_sc_hd__tt_025C_1v80.lib
 ```
 
-
 ![image](https://github.com/user-attachments/assets/6eb59a5a-3244-4f38-a0ba-5c67a4ad4347)
 
 ![image](https://github.com/user-attachments/assets/4da889f4-bc72-4ed6-9709-ecf44d473522)
@@ -1741,6 +1740,118 @@ A **standard cell library** is a collection of characterized logic gates designe
 ![image](https://github.com/user-attachments/assets/56660781-4b59-4b87-85b3-1596d722c3a7)
 
 ![image](https://github.com/user-attachments/assets/b9a82d41-bd17-4fc5-9146-0c59fefa7610)
+
+We can observe that:
+
+    - and2_0 -- takes the least area, more delay and low power.
+    - and2_1 -- takes more area, less delay and high power.
+    - and2_2 -- takes the largest area, larger delay and highest power.
+
+### Hierarchial synthesis vs Flat synthesis
+
+## Hierarchical vs. Flat Synthesis
+
+**Hierarchical synthesis** involves decomposing a complex design into multiple sub-modules, each synthesized separately to create gate-level netlists before being integrated. This method improves organization, facilitates module reuse, and allows for incremental design changes without affecting the entire system.
+
+In contrast, **flat synthesis** treats the entire design as a single entity during the synthesis process, resulting in one comprehensive netlist that disregards any hierarchical relationships. Although flat synthesis can optimize certain designs, it poses challenges in terms of maintenance, analysis, and modification due to the lack of structural modularity.
+
+
+### Hierarchial synthesis : 
+
+![image](https://github.com/user-attachments/assets/0a127ab8-8dc3-4f13-82d1-edc7914effa2)
+
+
+
+- To perform hierarchical synthesis on the multiple_modules.v file use the following commands:
+
+```c
+yosys
+
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+read_verilog multiple_modules.v
+
+
+```
+
+![image](https://github.com/user-attachments/assets/30b25818-aae1-4285-ab7c-68b54496d16c)
+
+
+- Staistics of Multiple Modules
+
+```c
+
+synth -top multiple_modules
+```
+
+![image](https://github.com/user-attachments/assets/1910676b-c389-4c3b-8a5b-c3761100f761)
+
+- Realization of the Logic
+
+``` c
+
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+show multiple_modules
+
+```
+
+![image](https://github.com/user-attachments/assets/e296f14e-0061-4150-9099-325945daef17)
+
+
+- Map to the standard library
+  
+ ```c
+ write_verilog -noattr multiple_modules_hier.v
+
+!vim multiple_modules_hier.v
+
+```
+
+![image](https://github.com/user-attachments/assets/5657e44b-ee15-4a65-a0e0-419e83b41673)
+
+
+### Flat synthesis :
+
+- This process combines all hierarchical modules in the design into a single module to generate a flat netlist. To execute flat synthesis on the `multiple_modules.v` file, use the following commands
+
+
+```c
+yosys
+
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+read_verilog multiple_modules.v
+
+synth -top multiple_modules
+
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+flatten
+
+show
+
+write_verilog -noattr multiple_modules_flat.v
+
+!vim multiple_modules_flat.v
+
+```
+
+
+![image](https://github.com/user-attachments/assets/d5cfea51-da55-4a69-af1c-39261408d042)
+
+- Realization of the Logic
+
+![image](https://github.com/user-attachments/assets/871e1c9a-fe52-4dd4-bdfd-dcad9c20d312)
+
+- NetList File:
+
+![image](https://github.com/user-attachments/assets/47cc71d1-1d27-4ddc-be48-5fc3f8d97b75)
+
+
+  
+
+
 
 
 </details>
