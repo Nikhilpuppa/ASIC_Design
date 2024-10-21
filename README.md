@@ -2739,7 +2739,7 @@ gtkwave tb_ternary_operator_mux.vcd
 
 
 
-#### Simulation:
+#### Synthesis:
 
 ```c
 yosys
@@ -2789,9 +2789,63 @@ iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_
 gtkwave tb_bad_mux.vcd
 ```
 
+### Labs on Synthesis-Simulation mismatch for blocking statements :
 
-![image](https://github.com/user-attachments/assets/506b3621-7a14-4b85-813f-bcd506f000b9)
+#### Code:
+![image](https://github.com/user-attachments/assets/8839e498-5314-4563-ac96-6843206c65bd)
 
+
+#### Synthesis:
+
+```c
+yosys
+
+read_liberty -lib ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+read_verilog blocking_caveat.v
+
+synth -top blocking_caveat
+
+abc -liberty ../lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+show
+
+write_verilog -noattr blocking_caveat_net.v
+```
+
+![image](https://github.com/user-attachments/assets/4c52b740-132c-493f-b027-5e1a71e854db)
+
+![image](https://github.com/user-attachments/assets/c847c033-7c12-473c-9866-b5b8b8caa994)
+
+
+#### GTK Wave:
+
+```c
+
+iverilog blocking_caveat.v tb_blocking_caveat.v
+
+./a.out
+
+gtkwave tb_blocking_caveat.vcd
+
+```
+
+![image](https://github.com/user-attachments/assets/47347c00-bbfd-49e2-a56a-b4e25e8bba40)
+
+
+
+#### GLS:
+
+```c
+iverilog ../my_lib/verilog_model/primitives.v ../my_lib/verilog_model/sky130_fd_sc_hd.v blocking_caveat_net.v tb_blocking_caveat.v
+
+./a.out
+
+gtkwave tb_blocking_caveat.vcd
+```
+
+
+![image](https://github.com/user-attachments/assets/7e1b25e0-239d-4f85-b426-9d12c91b8672)
 
 
 
