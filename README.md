@@ -2918,9 +2918,19 @@ gtkwave dump.vcd
 ![image](https://github.com/user-attachments/assets/7d682764-8a39-4e5d-81c4-27c430c42f1a)
 
 
-![image](https://github.com/user-attachments/assets/af1dbd63-1469-4bdb-a6e1-957c94a74a1c)
+![image](https://github.com/user-attachments/assets/576403fd-06bc-4c07-b6c7-348bd18eb45b)
 
-![image](https://github.com/user-attachments/assets/56f5f4f1-b062-4f3a-81df-7563905623bc)
+![image](https://github.com/user-attachments/assets/f7026f6e-dbd1-4be2-b77d-9bac2c6dec6e)
+
+
+
+
+## Realization :
+
+![image](https://github.com/user-attachments/assets/1d0b8873-5ac8-4ac0-90b6-72cec3145ed1)
+
+![image](https://github.com/user-attachments/assets/a5b931a5-353a-43d5-860b-1af75e52b21d)
+
 
 
 
@@ -2943,6 +2953,10 @@ gtkwave pre_synth_sim.vcd
 
 - You can view numbers adding up from 1 to 9 
 ![image](https://github.com/user-attachments/assets/c20071ea-2444-4a5b-925f-2504ac3b690a)
+
+
+
+
 
 
 </details>
