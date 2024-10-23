@@ -2853,5 +2853,99 @@ In this case there is a synthesis and simulation mismatch. While performing synt
 
 
 </details>
+</details>
+
+<details><summary><strong>Lab10</strong></summary>
+
+
+## Synthesizing RISC-V and comparing output with functional (RTL) simulation.
+### Procedure
+- Go to Following Directory
+```c
+  cd /home/nikhil/ASIC/sky130RTLDesignAndSynthesisWorkshop/src/module
+```
+- Run the following commands
+```c
+yosys
+read_liberty -lib /home/nikhil/VLSI/sky130RTLDesignAndSynthesisWorkshop/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+```
+![image](https://github.com/user-attachments/assets/de63c797-df7b-47e8-baa5-b0a477154578)
+
+```
+read_verilog clk_gate.v
+```
+![image](https://github.com/user-attachments/assets/586d6f43-43aa-4469-9ad6-d097ea283196)
+
+
+```
+read_verilog rvmyth.v
+```
+![image](https://github.com/user-attachments/assets/a465e7ad-97cb-4de0-992e-d0f5323b729e)
+
+
+```
+synth -top rvmyth
+```
+![image](https://github.com/user-attachments/assets/2f4428b7-e8aa-4100-add5-6e6777758776)
+
+
+```
+abc -liberty /home/nikhil/VLSI/sky130RTLDesignAndSynthesisWorkshop/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+```
+![image](https://github.com/user-attachments/assets/dfc95b7b-427e-4d36-b301-eb1740424504)
+
+
+```
+write_verilog -noattr rvmyth_netlist.v
+exit
+```
+
+![image](https://github.com/user-attachments/assets/42e4815c-c5ae-44ad-83b5-3fe70e4aa1e0)
+
+![image](https://github.com/user-attachments/assets/761f4322-2c81-4c84-95ec-1a650cac4888)
+
+
+
+
+
+
+```
+iverilog /home/nikhil/VLSI/sky130RTLDesignAndSynthesisWorkshop/my_lib/verilog_model/primitives.v /home/nikhil/VLSI/sky130RTLDesignAndSynthesisWorkshop/my_lib/verilog_model/sky130_fd_sc_hd.v rvmyth.v testbench.v vsdbabysoc.v avsddac.v avsdpll.v clk_gate.v
+./a.out
+gtkwave dump.vcd
+```
+
+![image](https://github.com/user-attachments/assets/7d682764-8a39-4e5d-81c4-27c430c42f1a)
+
+
+![image](https://github.com/user-attachments/assets/af1dbd63-1469-4bdb-a6e1-957c94a74a1c)
+
+![image](https://github.com/user-attachments/assets/56f5f4f1-b062-4f3a-81df-7563905623bc)
+
+
+
+
+## RTL Simulations:
+
+- Run the following commands to view the RTL Simulation of BabySoc.
+```c
+cd BabySoC_Simulation/
+
+iverilog -o ./pre_synth_sim.out -DPRE_SYNTH_SIM src/module/testbench.v -I src/include -I src/module/
+
+./pre_synth_sim.out
+
+gtkwave pre_synth_sim.vcd
+```
+- You can view 20 cycles in the below image
+![image](https://github.com/user-attachments/assets/4dc3d369-b8d3-4abd-9a32-5746f87a6ee0)
+
+
+- You can view numbers adding up from 1 to 9 
+![image](https://github.com/user-attachments/assets/c20071ea-2444-4a5b-925f-2504ac3b690a)
+
+
+</details>
+
 
 </details>
