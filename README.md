@@ -3019,7 +3019,7 @@ gtkwave pre_synth_sim.vcd
 - **Importance in STA**:
   - **Clock Delay Analysis**:  
     Measures delay for the clock signal from the source to
-## STA for Synthesized RISC-V Core with 10.65 ns Time Period
+## STA for Synthesized RISC-V Core with 10.70 ns Time Period
 
 To verify that the synthesized RISC-V Core module meets its timing constraints, we will generate setup and hold timing reports. These reports confirm that data signals propagate correctly throughout the core.
 
@@ -3069,11 +3069,18 @@ read_sdc ./sdc/vsdbabysoc_synthesis.sdc
 report_checks -path_delay min_max -format full_clock_expanded -digits 4
 ```
 
-![image](https://github.com/user-attachments/assets/af291651-d269-4dd0-af33-72257b19660a)
+![image](https://github.com/user-attachments/assets/da67530f-61e1-4510-ae4c-806842dc8509)
 
-![image(1)](https://github.com/user-attachments/assets/cd3e7a66-c8c8-4084-bdc6-4060cb133c12)
 
-![image(2)](https://github.com/user-attachments/assets/6662567d-1f0e-4660-81a2-15ec7953975f)
+**Set Up Time**
+
+![image(4)](https://github.com/user-attachments/assets/565ad794-cc12-404e-b85e-4861981ad946)
+
+
+**Hold Time**
+
+![image(5)](https://github.com/user-attachments/assets/6f00909e-2db1-4292-96b8-abff2de760b8)
+
 
 
 
