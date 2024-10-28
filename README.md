@@ -2955,6 +2955,125 @@ gtkwave pre_synth_sim.vcd
 - You can view numbers adding up from 1 to 9 
 ![image](https://github.com/user-attachments/assets/c20071ea-2444-4a5b-925f-2504ac3b690a)
 
+</details>
+
+<details><summary><strong>Lab11</strong></summary>
+	
+# Static Timing Analysis (STA)
+
+- **Definition**:  
+  Static Timing Analysis (STA) is a technique to verify the timing performance of digital circuits without dynamic simulation. It ensures that the circuit meets timing constraints by analyzing data paths, gate delays, and interconnects.
+
+- **Key Functions**:
+  - **Setup & Hold Time Verification**:  
+    Checks for violations to ensure data stability around clock edges.
+  - **Clock Properties**:  
+    Incorporates clock parameters like frequency, skew, and jitter.
+  - **Worst-Case Delay Conditions**:  
+    Assumes worst-case delays to verify performance across varying conditions.
+
+- **Tools**:  
+  - Common STA tools include **Synopsys PrimeTime** and **Cadence Tempus**.
+
+- **Importance in Digital Design**:
+  - **Data Propagation Verification**:  
+    Ensures data signals propagate within required timing limits for valid outputs.
+  - **Violation Identification**:  
+    Detects setup and hold violations to ensure reliable operation of flip-flops and other sequential elements.
+  - **Performance Optimization**:  
+    Highlights critical paths that restrict maximum operating frequency.
+  - **Early Detection of Timing Issues**:  
+    Minimizes costly redesigns by detecting issues in early stages.
+  - **Power-Performance Balance**:  
+    Analyzes power impact of clock frequency adjustments.
+  - **Handling Complex Designs**:  
+    Considers variations in manufacturing, temperature, and voltage for consistent performance.
+
+---
+
+## Reg-to-Reg Path
+
+- **Definition**:  
+  A **reg-to-reg path** connects two sequential elements (like flip-flops) within a circuit.
+
+- **Purpose**:  
+  Ensures data flows correctly between registers in pipelined or sequential designs.
+
+- **Key STA Considerations**:
+  - **Setup & Hold Timing Compliance**:  
+    Ensures data stability at registers.
+  - **Delay Analysis**:  
+    Assesses delays through combinational logic between registers.
+  - **Critical Path Impact**:  
+    Determines maximum circuit frequency.
+  - **Multi-Clock Domain Considerations**:  
+    Accounts for metastability and synchronization when registers are in different clock domains.
+
+---
+
+## Clk-to-Reg Path
+
+- **Definition**:  
+  A **clk-to-reg path** connects the clock signal to a register, ensuring correct register operation relative to clock edges.
+
+- **Importance in STA**:
+  - **Clock Delay Analysis**:  
+    Measures delay for the clock signal from the source to
+## STA for Synthesized RISC-V Core with 10.65 ns Time Period
+
+To verify that the synthesized RISC-V Core module meets its timing constraints, we will generate setup and hold timing reports. These reports confirm that data signals propagate correctly throughout the core.
+
+### Steps to Run Timing Analysis
+
+Run the following commands to generate setup and hold timing reports:
+
+```
+set PERIOD 10.7
+
+set_units -time ns
+
+create_clock [get_pins {pll/CLK}] -name clk -period $PERIOD
+set_clock_uncertainty -setup  [expr $PERIOD * 0.05] [get_clocks clk]
+set_clock_transition [expr $PERIOD * 0.05] [get_clocks clk]
+set_clock_uncertainty -hold [expr $PERIOD * 0.08] [get_clocks clk]
+set_input_transition [expr $PERIOD * 0.08] [get_ports ENb_CP]
+set_input_transition [expr $PERIOD * 0.08] [get_ports ENb_VCO]
+set_input_transition [expr $PERIOD * 0.08] [get_ports REF]
+set_input_transition [expr $PERIOD * 0.08] [get_ports VCO_IN]
+set_input_transition [expr $PERIOD * 0.08] [get_ports VREFH]
+```
+- Now run these commands
+```
+cd VSDBabySoc/src
+
+sta
+
+read_liberty -min ./lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+read_liberty -min ./lib/avsdpll.lib
+
+read_liberty -min ./lib/avsddac.lib
+
+read_liberty -max ./lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+read_liberty -max ./lib/avsdpll.lib
+
+read_liberty -max ./lib/avsddac.lib
+
+read_verilog ../output/synth/vsdbabysoc.synth.v
+
+link_design vsdbabysoc
+
+read_sdc ./sdc/vsdbabysoc_synthesis.sdc
+
+report_checks -path_delay min_max -format full_clock_expanded -digits 4
+```
+
+![image](https://github.com/user-attachments/assets/af291651-d269-4dd0-af33-72257b19660a)
+
+![image(1)](https://github.com/user-attachments/assets/cd3e7a66-c8c8-4084-bdc6-4060cb133c12)
+
+![image(2)](https://github.com/user-attachments/assets/6662567d-1f0e-4660-81a2-15ec7953975f)
 
 
 
