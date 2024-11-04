@@ -3083,6 +3083,102 @@ report_checks -path_delay min_max -format full_clock_expanded -digits 4
 
 
 
+</details>
+
+<details><summary><strong>Lab12</strong></summary>
+
+## STA comparison for various sky libraries :
+
+- Store all the sky lib files in a folder named timing_libs. Now, go to VSDBabySoC/src and create a tickle file sta_across_pvt.tcl . The below block is the content of the tickle file
+
+```c
+set list_of_lib_files(1) "sky130_fd_sc_hd__ff_100C_1v65.lib"
+set list_of_lib_files(2) "sky130_fd_sc_hd__ff_100C_1v95.lib"
+set list_of_lib_files(3) "sky130_fd_sc_hd__ff_n40C_1v56.lib"
+set list_of_lib_files(4) "sky130_fd_sc_hd__ff_n40C_1v65.lib"
+set list_of_lib_files(5) "sky130_fd_sc_hd__ff_n40C_1v76.lib"
+set list_of_lib_files(6) "sky130_fd_sc_hd__ff_n40C_1v95.lib"
+set list_of_lib_files(7) "sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib.part1"
+set list_of_lib_files(8) "sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib.part2"
+set list_of_lib_files(9) "sky130_fd_sc_hd__ff_n40C_1v95_ccsnoise.lib.part3"
+set list_of_lib_files(10) "sky130_fd_sc_hd__ss_100C_1v40.lib"
+set list_of_lib_files(11) "sky130_fd_sc_hd__ss_100C_1v60.lib"
+set list_of_lib_files(12) "sky130_fd_sc_hd__ss_n40C_1v28.lib"
+set list_of_lib_files(13) "sky130_fd_sc_hd__ss_n40C_1v35.lib"
+set list_of_lib_files(14) "sky130_fd_sc_hd__ss_n40C_1v40.lib"
+set list_of_lib_files(15) "sky130_fd_sc_hd__ss_n40C_1v44.lib"
+set list_of_lib_files(16) "sky130_fd_sc_hd__ss_n40C_1v60.lib"
+set list_of_lib_files(17) "sky130_fd_sc_hd__ss_n40C_1v60_ccsnoise.lib.part1"
+set list_of_lib_files(18) "sky130_fd_sc_hd__ss_n40C_1v60_ccsnoise.lib.part2"
+set list_of_lib_files(19) "sky130_fd_sc_hd__ss_n40C_1v60_ccsnoise.lib.part3"
+set list_of_lib_files(20) "sky130_fd_sc_hd__ss_n40C_1v76.lib"
+set list_of_lib_files(21) "sky130_fd_sc_hd__tt_025C_1v80.lib"
+set list_of_lib_files(22) "sky130_fd_sc_hd__tt_100C_1v80.lib"
+
+for {set i 1} {$i <= [array size list_of_lib_files]} {incr i} {
+read_liberty ./timing_libs/$list_of_lib_files($i)
+read_verilog ../output/synth/vsdbabysoc.synth.v
+link_design vsdbabysoc
+read_sdc ./sdc/vsdbabysoc_synthesis.sdc
+check_setup -verbose
+report_checks -path_delay min_max -fields {nets cap slew input_pins fanout} -digits {4} > ./sta_output/min_max_$list_of_lib_files($i).txt
+
+}
+```
+
+
+![image(7)](https://github.com/user-attachments/assets/6a9e2606-d44e-4019-9ac2-1955b128840b)
+
+constrains file :
+
+![image](https://github.com/user-attachments/assets/f17a35df-dff5-4983-9981-d57ab8698dc7)
+
+
+
+Run the following commands:
+
+```c
+cd VSDBabySoC/src
+
+sta
+
+source sta_across_pvt.tcl
+```
+
+
+### Table:
+
+
+### Graphs:
+
+
+
+
+### Timing Reports:
+![image](https://github.com/user-attachments/assets/c66c870b-d705-4c74-ba60-83908af4b768)
+![image](https://github.com/user-attachments/assets/cb4feafb-b399-4d85-ba1d-b4661955bbba)
+![image](https://github.com/user-attachments/assets/ccf3d87a-1dce-4a6b-a2b2-d59c1d12e330)
+![image](https://github.com/user-attachments/assets/ff42f908-70db-40fd-9367-113f6c34c403)
+![image](https://github.com/user-attachments/assets/1b2c6d81-ea21-4376-afc9-814a43471279)
+![image](https://github.com/user-attachments/assets/fad27c9a-3fe8-471f-8678-68e190e53639)
+![image](https://github.com/user-attachments/assets/fbeecc3b-2c13-4826-881d-512d5686ac93)
+![image](https://github.com/user-attachments/assets/eeccebfb-b094-4ff1-b3a9-cf4c1e75c6ca)
+![image](https://github.com/user-attachments/assets/5f627eb6-2a19-48f9-87e1-eee3256625a3)
+![image](https://github.com/user-attachments/assets/1ff80db5-9bf4-4711-81fc-d73bf5cf8811)
+![image](https://github.com/user-attachments/assets/98223880-f075-4033-8fa4-3998c87b3aa5)
+![image](https://github.com/user-attachments/assets/4608789b-1475-4e3c-b2c0-bf7bc845c202)
+![image](https://github.com/user-attachments/assets/5294c0f2-194c-4e42-afab-9298c9c4fa08)
+![image](https://github.com/user-attachments/assets/7e3850fa-76b9-49ce-964c-9f8cec1a9f98)
+![image](https://github.com/user-attachments/assets/65a0443c-9d27-49f3-a361-f7e6bd4c7ed2)
+![image](https://github.com/user-attachments/assets/377d470e-e213-42d5-8fc7-88e9e200a29a)
+![image](https://github.com/user-attachments/assets/96be1477-09d7-4f9c-af33-eacda8c909bc)
+![image](https://github.com/user-attachments/assets/d6da0026-e82b-4e83-80db-8631dac54cdf)
+![image](https://github.com/user-attachments/assets/748dedc5-988b-4764-b20d-a69f0d2917dc)
+![image](https://github.com/user-attachments/assets/78ba15fc-0bb8-44c7-9d3d-92ca22e6a474)
+![image](https://github.com/user-attachments/assets/c929b122-76b3-4a30-824d-5bc2ba6060d6)
+![image](https://github.com/user-attachments/assets/e4c5acae-d4e0-48ef-9d1e-8333bd799228)
+
+
 
 
 
