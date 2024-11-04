@@ -3147,9 +3147,17 @@ source sta_across_pvt.tcl
 
 
 ### Table:
+![image](https://github.com/user-attachments/assets/4d17bcb5-e5c0-4425-a3c0-f288905fa0bc)
 
 
 ### Graphs:
+
+
+#### Worst Setup Slack:
+![image](https://github.com/user-attachments/assets/49818caa-6464-48b3-9ea0-df5f41a8af03)
+
+#### Worst Hold Slack:
+![image](https://github.com/user-attachments/assets/7092d8b3-a272-4511-a836-d09a1bf1bb4c)
 
 
 
