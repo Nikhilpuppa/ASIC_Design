@@ -3508,7 +3508,7 @@ According to the floorplan definitions:
 To view the floorplan in Magic:
 
 ```
-cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/11-11_16-28/results/floorplan/
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/13-11_08-56/results/floorplan/
 magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def &
 ```
 ![image](https://github.com/user-attachments/assets/f354eeef-17c7-4b14-9eda-1faccdfdcc1f)
@@ -3543,7 +3543,7 @@ run_placement
 View the placement in Magic with:
 
 ```
-cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/11-11_16-56/results/placement/
+cd Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/13-11_08-56/results/placement/
 magic -T /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
 ```
 
