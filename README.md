@@ -3193,7 +3193,7 @@ source sta_across_pvt.tcl
 </details>
 
 <details>
-<summary><strong>Lab 13</strong></summary>
+<summary><strong>Lab13</strong></summary>
 <details>
 	
 # Advanced Physical Design using OpenLane using Sky130
