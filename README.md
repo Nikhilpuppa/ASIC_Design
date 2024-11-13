@@ -3192,5 +3192,247 @@ source sta_across_pvt.tcl
 
 </details>
 
+<details>
+<summary><strong>Lab 13</strong></summary>
+<details>
+	
+# Advanced Physical Design using OpenLane using Sky130
+<summary><strong>Day-1:</strong>  Inception of open-source EDA, OpenLane and Sky130 PDK</summary>
 
+## Origin of Open-Source EDA, OpenLane, and Sky130 PDK
+
+**QFN-48 Package**: The QFN-48 is a compact, leadless package with 48 connection pads on its perimeter, known for its efficient thermal and electrical properties. It’s well-suited for applications requiring high component density.
+
+![Screenshot from 2024-11-11 14-32-57](https://github.com/user-attachments/assets/3f1237c7-c6a6-453f-9655-636f8778eb9c)
+
+**Chip**: This is an integrated circuit (IC) built on a silicon substrate, consisting of various functional blocks, such as memory, processors, and I/O, each designed for specific electronic applications.
+
+![Screenshot from 2024-11-11 14-33-11](https://github.com/user-attachments/assets/32a46c31-bde4-46b7-807a-5f09e7a42a82)
+
+**Pads**: Small metallic contact points on a chip or package, allowing internal circuitry to connect with external components and enabling signal transfer.
+
+**Core**: The main processing unit within a chip, containing logic designed for optimized power and performance.
+
+**Die**: This is the individual IC section of a silicon wafer before packaging, containing all active chip circuitry.
+
+![Screenshot from 2024-11-11 14-33-23](https://github.com/user-attachments/assets/ff797bc6-ea8e-4bd9-be22-e3cf8ce4df95)
+
+**IPs (Intellectual Properties)**: These are pre-designed functional modules, such as USB controllers or memory interfaces, licensed for reuse to reduce development time and costs.
+
+![Screenshot from 2024-11-11 14-33-32](https://github.com/user-attachments/assets/4e0b10e5-eea2-4b68-a42c-3db071423e38)
+
+---
+
+### Software-to-Hardware Execution Flow
+
+When running an application on hardware, it starts at the system software layer, translating it to binary form. Key components here include the Operating System (OS), Compiler, and Assembler.
+
+1. **OS**: Breaks down application functions written in high-level languages (e.g., C, Java) and passes them to a compiler.
+2. **Compiler**: Translates functions into hardware-specific low-level instructions.
+3. **Assembler**: Converts these instructions into binary code executable by the hardware.
+
+![Screenshot from 2024-11-11 14-33-50](https://github.com/user-attachments/assets/0f07a5f9-9ce0-457e-a7af-1caffa64f809)
+
+For example, a stopwatch application running on a RISC-V core follows this flow: The OS generates a function in C, which the compiler translates into RISC-V instructions adapted to the architecture. These instructions are further processed by the assembler, converting them into binary code, which is integrated into the chip layout to allow hardware execution of the intended function.
+
+![Screenshot from 2024-11-11 14-34-04](https://github.com/user-attachments/assets/1d9b1e0e-1170-4709-98b9-3f2f71f28098)
+
+Below is an example showing the compiler’s input and output for the stopwatch app.
+
+![Screenshot from 2024-11-11 14-34-16](https://github.com/user-attachments/assets/205f26fb-62b5-40d4-8bf2-ef96fc9ff711)
+
+The compiler generates instructions specific to the architecture, and the assembler converts these into binary patterns. To execute them, an RTL (written in a Hardware Description Language) interprets and implements these instructions. This RTL design is then synthesized into a netlist, represented by interconnected logic gates. Finally, the netlist undergoes physical design implementation, preparing it for chip fabrication.
+
+![Screenshot from 2024-11-11 14-34-28](https://github.com/user-attachments/assets/f4df4c33-62e9-4a78-9f14-98282aa9c2a2)
+
+---
+
+### Components of ASIC Design
+
+- **RTL IPs**: Verified circuit blocks (adders, flip-flops) in HDL used to speed up complex designs.
+- **EDA Tools**: Automate ASIC tasks like synthesis, optimization, and timing analysis, ensuring that performance requirements are met.
+- **PDK Data**: Foundry files define the manufacturing process, ensuring that ASIC designs are fabrication-ready.
+
+![Screenshot from 2024-11-11 14-34-40](https://github.com/user-attachments/assets/610fc21f-8262-4d4b-b868-01a9d84b40ca)
+
+---
+
+### Simplified RTL to GDSII Flow
+
+![Screenshot from 2024-11-11 14-34-49](https://github.com/user-attachments/assets/9d8d2664-476d-4cd6-b5b3-7e0aed241a2f)
+
+1. **RTL Design**: Describes the circuit’s function using HDLs like Verilog or VHDL.
+2. **RTL Synthesis**: Converts RTL to a gate-level netlist with optimized cells.
+3. **Floor and Power Planning**: Arranges major components, power grid, and I/O.
+4. **Placement**: Allocates cells to minimize wirelength and signal delay.
+5. **Clock Tree Synthesis (CTS)**: Distributes clock signals evenly to reduce skew.
+6. **Routing**: Connects components while adhering to design rules.
+7. **Sign-off**: Final verification, confirming design readiness for fabrication.
+8. **GDSII Generation**: Creates the layout for chip production.
+
+---
+
+### OpenLane ASIC Flow Overview
+
+![Screenshot from 2024-11-11 14-34-58](https://github.com/user-attachments/assets/414fbce3-7665-4375-9123-42a11f41ccec)
+
+1. **RTL Synthesis and Technology Mapping**: Utilizes Yosys and ABC.
+2. **Static Timing Analysis**: Performed with OpenSTA.
+3. **Floor Planning**: Uses init_fp, ioPlacer, pdn, and tapcell.
+4. **Placement**: Managed by RePLace, Resizer, OpenPhySyn, and OpenDP.
+5. **Clock Tree Synthesis**: Executed by TritonCTS.
+6. **Fill Insertion**: Performed by OpenDP.
+7. **Routing**: Uses FastRoute/CU-GR for global and TritonRoute/DR-CU for detailed routing.
+8. **SPEF Extraction**: OpenRCX is used for parasitic data.
+9. **GDSII Output**: Produced with Magic and KLayout.
+10. **Design Rule Checks**: Conducted with Magic and KLayout.
+11. **Layout vs. Schematic Check**: Uses Netgen.
+12. **Antenna Checks**: Managed by Magic.
+
+---
+
+### OpenLane Directory Structure
+
+```plaintext
+├── OpenLane            # Tool directory
+│   ├── designs         # Holds all designs
+│   │   └── picorv32a   # Example design
+├── pdks                # PDK-related files
+│   ├── skywater-pdk    # Skywater 130nm PDKs
+│   ├── open-pdks       # Scripts for open-source tool compatibility
+│   ├── sky130A         # Open-source compatible PDK variant
+│   │   ├── libs.ref    # Node-specific files (e.g., timing, tech LEF)
+│   │   ├── libs.tech   # Tool-specific files (e.g., for KLayout)
+```
+
+### Running Synthesis in OpenLane
+
+1. **Navigate and start OpenLane**:
+   ```bash
+   cd Desktop/work/tools/openlane_working_dir/openlane
+   docker
+   ./flow.tcl -interactive
+   package require openlane 0.9
+   prep -design picorv32a
+   run_synthesis
+   ```
+   
+   ![image](https://github.com/user-attachments/assets/582efdd1-9a5e-4cba-8e21-7ae875666f08)
+
+2. **View the Netlist**:
+   ```bash
+   cd designs/picorv32a/runs/11-11_16-15/results/synthesis/
+   gedit picorv32a.synthesis.v
+   ```
+![image](https://github.com/user-attachments/assets/bf2e3ab9-536f-4d78-a224-c3b62eb2ef96)
+
+![image](https://github.com/user-attachments/assets/827d9144-39f8-4b34-a3b9-a7ad8d953954)
+
+
+3. **Yosys Report**:
+   ```bash
+   cd ../..
+   cd reports/synthesis
+   gedit 1-yosys_4.stat.rpt
+   ```
+
+![image](https://github.com/user-attachments/assets/b015667f-4180-4e0e-88fb-57158c7dcbba)
+
+
+
+ ![image](https://github.com/user-attachments/assets/41f85e0e-1a2a-46d5-bc2f-620377db27fa)
+
+**Report:**
+
+```
+28. Printing statistics.
+
+=== picorv32a ===
+
+   Number of wires:              14596
+   Number of wire bits:          14978
+   Number of public wires:        1565
+   Number of public wire bits:    1947
+   Number of memories:               0
+   Number of memory bits:            0
+   Number of processes:              0
+   Number of cells:              14876
+     sky130_fd_sc_hd__a2111o_2       1
+     sky130_fd_sc_hd__a211o_2       35
+     sky130_fd_sc_hd__a211oi_2      60
+     sky130_fd_sc_hd__a21bo_2      149
+     sky130_fd_sc_hd__a21boi_2       8
+     sky130_fd_sc_hd__a21o_2        57
+     sky130_fd_sc_hd__a21oi_2      244
+     sky130_fd_sc_hd__a221o_2       86
+     sky130_fd_sc_hd__a22o_2      1013
+     sky130_fd_sc_hd__a2bb2o_2    1748
+     sky130_fd_sc_hd__a2bb2oi_2     81
+     sky130_fd_sc_hd__a311o_2        2
+     sky130_fd_sc_hd__a31o_2        49
+     sky130_fd_sc_hd__a31oi_2        7
+     sky130_fd_sc_hd__a32o_2        46
+     sky130_fd_sc_hd__a41o_2         1
+     sky130_fd_sc_hd__and2_2       157
+     sky130_fd_sc_hd__and3_2        58
+     sky130_fd_sc_hd__and4_2       345
+     sky130_fd_sc_hd__and4b_2        1
+     sky130_fd_sc_hd__buf_1       1656
+     sky130_fd_sc_hd__buf_2          8
+     sky130_fd_sc_hd__conb_1        42
+     sky130_fd_sc_hd__dfxtp_2     1613
+     sky130_fd_sc_hd__inv_2       1615
+     sky130_fd_sc_hd__mux2_1      1224
+     sky130_fd_sc_hd__mux2_2         2
+     sky130_fd_sc_hd__mux4_1       221
+     sky130_fd_sc_hd__nand2_2       78
+     sky130_fd_sc_hd__nor2_2       524
+     sky130_fd_sc_hd__nor2b_2        1
+     sky130_fd_sc_hd__nor3_2        42
+     sky130_fd_sc_hd__nor4_2         1
+     sky130_fd_sc_hd__o2111a_2       2
+     sky130_fd_sc_hd__o211a_2       69
+     sky130_fd_sc_hd__o211ai_2       6
+     sky130_fd_sc_hd__o21a_2        54
+     sky130_fd_sc_hd__o21ai_2      141
+     sky130_fd_sc_hd__o21ba_2      209
+     sky130_fd_sc_hd__o21bai_2       1
+     sky130_fd_sc_hd__o221a_2      204
+     sky130_fd_sc_hd__o221ai_2       7
+     sky130_fd_sc_hd__o22a_2      1312
+     sky130_fd_sc_hd__o22ai_2       59
+     sky130_fd_sc_hd__o2bb2a_2     119
+     sky130_fd_sc_hd__o2bb2ai_2     92
+     sky130_fd_sc_hd__o311a_2        8
+     sky130_fd_sc_hd__o31a_2        19
+     sky130_fd_sc_hd__o31ai_2        1
+     sky130_fd_sc_hd__o32a_2       109
+     sky130_fd_sc_hd__o41a_2         2
+     sky130_fd_sc_hd__or2_2       1088
+     sky130_fd_sc_hd__or2b_2        25
+     sky130_fd_sc_hd__or3_2         68
+     sky130_fd_sc_hd__or3b_2         5
+     sky130_fd_sc_hd__or4_2         93
+     sky130_fd_sc_hd__or4b_2         6
+     sky130_fd_sc_hd__or4bb_2        2
+
+   Chip area for module '\picorv32a': 147712.918400
+
+```
+
+**Report Summary**:
+
+```
+Flop ratio = Number of D Flip flops = 1613  = 0.1084
+             ______________________   _____
+             Total Number of cells    14876
+```
+
+- **Wire Count**: 14,596
+- **Cell Count**: 14,876, including specific cells like `sky130_fd_sc_hd__a2111o_2`, `sky130_fd_sc_hd__and2_2`.
+- **D Flip-flops**: 1,613 with a flop ratio of 0.1084
+
+   
+
+</details>
 </details>
