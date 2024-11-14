@@ -4282,7 +4282,7 @@ run_routing
 Screenshots of routing run
 
 ![image](https://github.com/user-attachments/assets/b3f46508-98e1-462c-a320-dff132653532)
-
+![image](https://github.com/user-attachments/assets/13e40893-459e-4f69-bfa2-1c9068baaf29)
 
 
 <img width="1007" alt="Screenshot 2024-11-14 at 1 15 24 AM" src="https://github.com/user-attachments/assets/507ba59e-e8ce-4c0d-8d42-3f5d6b26c857">
@@ -4292,7 +4292,7 @@ Screenshots of routing run
 Screenshot of fast route guide present in openlane/designs/picorv32a/runs/13-11_12-30/tmp/routing directory
 
 ![image](https://github.com/user-attachments/assets/e7ed2db7-8f50-4960-bbaf-9222ac08f98f)
-![image](https://github.com/user-attachments/assets/13e40893-459e-4f69-bfa2-1c9068baaf29)
+
 
 
 
