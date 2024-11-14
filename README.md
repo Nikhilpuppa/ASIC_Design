@@ -4281,19 +4281,19 @@ run_routing
 ```
 Screenshots of routing run
 
-![Screenshot from 2024-11-14 00-25-50](https://github.com/user-attachments/assets/08b93b7f-bebe-482e-82ec-2cc0a751054b)
-![Screenshot from 2024-11-14 00-29-26](https://github.com/user-attachments/assets/e0cdb4e7-b24c-43e2-b7b6-107c961b786b)
-![Screenshot from 2024-11-14 00-34-39](https://github.com/user-attachments/assets/83684a88-d6be-471a-8b78-4a76bf2a2322)
-![Screenshot from 2024-11-14 00-34-32](https://github.com/user-attachments/assets/57eabce7-2021-4977-8df9-2b2a5eeb7d9b)
+![image](https://github.com/user-attachments/assets/b3f46508-98e1-462c-a320-dff132653532)
+
 
 
 <img width="1007" alt="Screenshot 2024-11-14 at 1 15 24 AM" src="https://github.com/user-attachments/assets/507ba59e-e8ce-4c0d-8d42-3f5d6b26c857">
 
 <img width="623" alt="Screenshot 2024-11-14 at 1 18 40 AM" src="https://github.com/user-attachments/assets/975f23b9-3129-40d0-915d-2a12fde2df7d">
 
-Screenshot of fast route guide present in openlane/designs/picorv32a/runs/13-11_18-24/tmp/routing directory
+Screenshot of fast route guide present in openlane/designs/picorv32a/runs/13-11_12-30/tmp/routing directory
 
-![Screenshot from 2024-11-14 01-10-16](https://github.com/user-attachments/assets/34cdaa8c-3c9b-40f4-a146-cd09a6d637f2)
+![image](https://github.com/user-attachments/assets/e7ed2db7-8f50-4960-bbaf-9222ac08f98f)
+![image](https://github.com/user-attachments/assets/13e40893-459e-4f69-bfa2-1c9068baaf29)
+
 
 
 ## 3. Post-Route parasitic extraction using SPEF extractor.
@@ -4302,23 +4302,23 @@ Commands for SPEF extraction using external tool
 
 cd Desktop/work/tools/SPEF_EXTRACTOR
 
-python3 main.py /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/13-11_18-24/tmp/merged.lef /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/13-11_18-24/results/routing/picorv32a.def
+python3 main.py /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/13-11_12-30/tmp/merged.lef /home/vsduser/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/13-11_18-24/results/routing/picorv32a.def
 ```
 
 ## 4. Post-Route OpenSTA timing analysis with the extracted parasitics of the route.
 Commands to be run in OpenLANE flow to do OpenROAD timing analysis with integrated OpenSTA in OpenROAD
 ```
 openroad
-read_lef /openLANE_flow/designs/picorv32a/runs/13-11_18-24/tmp/merged.lef
-read_def /openLANE_flow/designs/picorv32a/runs/13-11_18-24/results/routing/picorv32a.def
+read_lef /openLANE_flow/designs/picorv32a/runs/13-11_12-30/tmp/merged.lef
+read_def /openLANE_flow/designs/picorv32a/runs/13-11_12-30/results/routing/picorv32a.def
 write_db pico_route.db
 read_db pico_route.db
-read_verilog /openLANE_flow/designs/picorv32a/runs/13-11_18-24/results/synthesis/picorv32a.synthesis_preroute.v
+read_verilog /openLANE_flow/designs/picorv32a/runs/13-11_12-30/results/synthesis/picorv32a.synthesis_preroute.v
 read_liberty $::env(LIB_SYNTH_COMPLETE)
 link_design picorv32a
 read_sdc /openLANE_flow/designs/picorv32a/src/my_base.sdc
 set_propagated_clock [all_clocks]
-read_spef /openLANE_flow/designs/picorv32a/runs/13-11_18-24/results/routing/picorv32a.spef
+read_spef /openLANE_flow/designs/picorv32a/runs/13-11_12-30/results/routing/picorv32a.spef
 report_checks -path_delay min_max -fields {slew trans net cap input_pins} -format full_clock_expanded -digits 4
 exit
 
