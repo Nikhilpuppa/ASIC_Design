@@ -4332,16 +4332,47 @@ exit
 ## Installing and setting up ORFS:
 
 ```c
+
 git clone --recursive https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts
 cd OpenROAD-flow-scripts
 sudo ./setup.sh
+
 ```
 
 
 ![image](https://github.com/user-attachments/assets/36f750fb-3251-44f6-aec8-753704b1477d)
 
 
-![image](https://github.com/user-attachments/assets/61df4ad4-1dbd-4503-a56b-d903f87eb71c)
+![image](https://github.com/user-attachments/assets/0ac8a1d2-ce4c-45c9-b310-a2eb204daee2)
+
+
+
+```c
+./build_openroad.sh --local
+```
+
+![image](https://github.com/user-attachments/assets/63efe589-3e2d-42c6-a4cc-990d250a238a)
+
+## Verify Installation
+
+```c
+source ./env.sh
+yosys -help
+openroad -help
+cd flow
+make
+```
+
+![ss1](https://github.com/user-attachments/assets/1562f2c4-84e0-42d1-8e67-5bd013e64c28)
+
+![image](https://github.com/user-attachments/assets/789b42c0-251b-4aea-b971-0f761826297c)
+
+
+```c
+make gui_final
+```
+
+![image](https://github.com/user-attachments/assets/17e41a9b-8522-4176-a9d6-e039631286db)
 
 
 
