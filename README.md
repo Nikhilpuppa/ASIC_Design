@@ -4491,7 +4491,13 @@ Synthesis Stats:
 
 ![image](https://github.com/user-attachments/assets/ce69fd69-8de3-4180-9e57-7493bfc6f52e)
 
+### Run the folllowing commands for floorplan:
 
+```c
+make DESIGN_CONFIG=./designs/sky130hd/vsdbabysoc/config.mk floorplan
+```
+
+![image](https://github.com/user-attachments/assets/be1d1cba-7400-42fe-adb8-e8af4f6697a9)
 
 
 </details>
