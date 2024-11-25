@@ -4324,9 +4324,29 @@ exit
 
 ```
 
+</details>
+</details>
+
+<details><summary><strong>Lab14</strong></summary>
+
+## Installing and setting up ORFS:
+
+```c
+git clone --recursive https://github.com/The-OpenROAD-Project/OpenROAD-flow-scripts
+cd OpenROAD-flow-scripts
+sudo ./setup.sh
+```
+
+
+![image](https://github.com/user-attachments/assets/36f750fb-3251-44f6-aec8-753704b1477d)
+
+
+![image](https://github.com/user-attachments/assets/61df4ad4-1dbd-4503-a56b-d903f87eb71c)
+
 
 
 
 
 </details>
+
 </details>
